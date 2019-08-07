@@ -1,0 +1,291 @@
+--------[ 2017-12-15 18:31:24 ]
+# parameters from EPICS run 896
+ebeam = 2.21698
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-15 18:43:56 ]
+# parameters from EPICS run 897
+ebeam = 2.21708
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-15 18:55:38 ]
+# parameters from EPICS run 898
+ebeam = 2.21703
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-15 18:58:30 ]
+# parameters from EPICS run 899
+ebeam = 2.21703
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-15 19:11:46 ]
+# parameters from EPICS run 900
+ebeam = 2.21701
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-15 19:13:14 ]
+# parameters from EPICS run 901
+ebeam = 2.21786
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-15 19:49:11 ]
+# parameters from EPICS run 902
+ebeam = 2.21698
+L.theta = 17.0054
+L.pcentral = 1.99998
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99998
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99998
+ 
+ --------[ 2017-12-15 20:12:24 ]
+# parameters from EPICS run 903
+ebeam = 2.21712
+L.theta = 17.0054
+L.pcentral = 1.99998
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99998
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99998
+ 
+ --------[ 2017-12-15 20:13:21 ]
+# parameters from EPICS run 904
+ebeam = 2.21705
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-15 20:19:31 ]
+# parameters from EPICS run 905
+ebeam = 2.21719
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-15 20:41:43 ]
+# parameters from EPICS run 907
+ebeam = 2.21741
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-15 21:04:10 ]
+# parameters from EPICS run 908
+ebeam = 2.21752
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-15 21:07:18 ]
+# parameters from EPICS run 909
+ebeam = 2.21734
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-15 21:30:48 ]
+# parameters from EPICS run 910
+ebeam = 2.21745
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-15 21:45:48 ]
+# parameters from EPICS run 911
+ebeam = 2.21739
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-15 22:16:56 ]
+# parameters from EPICS run 912
+ebeam = 2.21714
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-15 22:23:54 ]
+# parameters from EPICS run 913
+ebeam = 2.21736
+L.theta = 17.0054
+L.pcentral = 1.99998
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99998
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99998
+ 
+ --------[ 2017-12-15 22:41:07 ]
+# parameters from EPICS run 914
+ebeam = 2.21741
+L.theta = 17.0054
+L.pcentral = 1.99998
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99998
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99998
+ 
+ --------[ 2017-12-15 22:54:46 ]
+# parameters from EPICS run 915
+ebeam = 2.21715
+L.theta = 17.0054
+L.pcentral = 1.99998
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99998
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99998
+ 
+ --------[ 2017-12-15 23:09:28 ]
+# parameters from EPICS run 916
+ebeam = 2.21743
+L.theta = 17.0054
+L.pcentral = 1.99998
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99998
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99998
+ 
+ --------[ 2017-12-15 23:26:47 ]
+# parameters from EPICS run 917
+ebeam = 2.21755
+L.theta = 17.0054
+L.pcentral = 1.99998
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99998
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99998
+ 
+ --------[ 2017-12-15 23:27:59 ]
+# parameters from EPICS run 918
+ebeam = 2.21749
+L.theta = 17.0054
+L.pcentral = 1.99998
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99998
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99998
+ 
+ --------[ 2017-12-15 23:39:53 ]
+# parameters from EPICS run 919
+ebeam = 2.21728
+L.theta = 17.0054
+L.pcentral = 1.99998
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99998
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99998
+ 
+ --------[ 2017-12-15 23:51:11 ]
+# parameters from EPICS run 920
+ebeam = 2.21786
+L.theta = 17.0054
+L.pcentral = 1.99998
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99998
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99998
+ 
+ --------[ 2017-12-16 00:02:45 ]
+# parameters from EPICS run 921
+ebeam = 2.21743
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-16 00:15:13 ]
+# parameters from EPICS run 922
+ebeam = 2.21742
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-16 00:23:05 ]
+# parameters from EPICS run 923
+ebeam = 2.2174
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-16 00:38:55 ]
+# parameters from EPICS run 924
+ebeam = 2.21737
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ --------[ 2017-12-16 00:52:39 ]
+# parameters from EPICS run 925
+ebeam = 2.21715
+L.theta = 17.0054
+L.pcentral = 1.99999
+FbusL.theta = 17.0054
+FbusL.pcentral = 1.99999
+OldTrackL.theta = 17.0054
+OldTrackL.pcentral = 1.99999
+ 
+ 

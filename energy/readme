@@ -1,0 +1,6 @@
+Files in this folder:
+1. create_db.py creates the information for db_run of the run files that are missing in the db_run file.
+2. en-ep.py reads the data generated from the root files and if the energy is 0, it reads it from the start of the run file.
+3. enroot reads the HALLA_p and calculates the average for I>5 
+4. new_db_run.py, reads the uncalibrated beam energy for each run in the energy uncalibrated and applies the correction factor
+to create a new_db_run.dat file
