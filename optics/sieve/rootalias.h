@@ -52,6 +52,7 @@ using namespace std;
 
 const char* ROOTPATHS[] = {
   "/volatile/halla/triton/nathaly/Rootfiles/dectest/",
+  "/Users/nathalysantiesteban/Documents/rootfiles/final/",
   // "/v/lustre2/expphy/volatile/halla/triton/shujie/replay/pass1/",
   0
 };

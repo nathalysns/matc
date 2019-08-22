@@ -4,7 +4,7 @@
 
 
 
-void raster_check(Int_t run){
+void raster_check(Int_t run, TString target){
 
 HallA_style();
 
@@ -48,6 +48,8 @@ Double_t rasterymax = 3;
 TString target_data = "Unknown";
 RunInformation  runinformation   = GetRunInformation(run, T, E, ev, 22.);
 target_data = runinformation.targ;
+
+if(target_data == "Unknown") target_data = target;
 //=================================================//
 
 auto* legend = new TLegend(0.12, 0.75, .23, .88);

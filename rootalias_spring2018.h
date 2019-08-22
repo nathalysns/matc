@@ -44,7 +44,10 @@
 #include <TString.h>
 
 const char* PATHS[] = {
-  //"/Users/nathalysantiesteban/Documents/rootfiles",
+
+  "/Volumes/MOTI/leiqaa",
+  "/Users/nathalysantiesteban/Documents/rootfiles",
+  
   //"/Users/nathalysantiesteban/Documents/nathaly",
   "/volatile/halla/triton/nathaly/Rootfiles/dectest",
   "/volatile/halla/triton/nathaly/Rootfiles/test",
@@ -74,15 +77,18 @@ struct target
 
 
 //=========bcm calibtration constants ==========//
-const double I=21.5;
+double I=21.5;
 const double protonmass = 0.93827231;
 
-const Double_t g = 0.0003451;
-const Double_t o = -0.0016;//0.0127
+//========== Constants for the Spring Calibration =======//
+Double_t g = 0.0003451;
+Double_t o = -0.0016;//0.0127
+
+
 const Double_t g_er = 2.237e-7;
 const Double_t o_er = 0.09432;
 const Double_t I_Cut = 1.5;
-const Int_t bins = 150;
+Int_t bins = 150;
 const Double_t vz = 0.2;
 const Double_t cm2tonb = pow(10,-33);
 
@@ -119,8 +125,8 @@ const double tg_ph_L_tight=0.03;
 const double tg_th_L_tight=0.035;
 const double tg_dp_L_tight=0.03;
 //========= Target =====================//
-const double tg_vz_L_tight=0.07;
-const double tg_vz_L_loose=0.04;
+const double tg_vz_L_tight=0.05;
+const double tg_vz_L_loose=0.08;
 
 TCut sh_cut_L=Form("((L.prl1.e+L.prl2.e)>L.tr.p[0]*1000*%g) && ((L.prl1.e+L.prl2.e)<L.tr.p[0]*1000*%g)",sh_min_L,sh_max_L);
 TCut cer_cut_L=Form("L.cer.asum_c>%g && L.cer.asum_c<%g",cer_min_L, cer_max_L);
@@ -253,8 +259,10 @@ Double_t pois_fit(Double_t *x, Double_t *par)
 // works for tritium snice 2018.1
 //----------------------------------------- 
 TString GetTarget(TChain *tree2, int run){
-  TString targname;
 
+  //cout << run << endl;
+  TString targname;
+  
   target h3={33106235,"Tritium"};
   target d2={29367355,"Deuterium"};
   target h={25610043,"Hydrogen"};
@@ -268,15 +276,73 @@ TString GetTarget(TChain *tree2, int run){
   target single={11013681,"Single Carbon Foil"};
   target ti={10298417,"Titanium"};
   target beo={9583153,"BeO"};
-    
+
   Double_t pos,pos1,i=0;
+  
   tree2->SetBranchAddress("haBDSPOS",&pos);
+  
   Int_t nn=tree2->GetEntries(); 
+  
   for(i=0;i<nn;i++){
     tree2->GetEntry(i);     
     if(pos<0) continue;
     pos1=pos;
-  } 
+  }
+
+  tree2->GetEntry(Int_t(nn-2)); 
+  if (pos1!=pos) targname="unkown,target moved during the run"; 
+  else if(fabs(pos)<= 0.000000001 ) {targname ="Unkown";}
+  else if(fabs(pos)<50) targname="HOME";
+  else if(fabs(pos-h3.pos)<20000)     targname=h3.name;
+  else if(fabs(pos-d2.pos)<20000)     targname=d2.name;
+  else if(fabs(pos-h.pos)<20000)      targname=h.name;
+  else if(fabs(pos-he3.pos)<20000)    targname=he3.name;
+  else if(fabs(pos-empty.pos)<20000)  targname=empty.name;
+  else if(fabs(pos-dummy.pos)<50)  targname=dummy.name;
+  else if(fabs(pos-optics.pos)<50) targname=optics.name;
+  else if(fabs(pos-hole.pos)<50)   targname=hole.name;
+  else if(fabs(pos-raster.pos)<50) targname=raster.name;
+  else if(fabs(pos-al.pos)<50)     targname=al.name;
+  else if(fabs(pos-single.pos)<50) targname=single.name;
+  else if(fabs(pos-ti.pos)<50)     targname=ti.name;
+  else if(fabs(pos-beo.pos)<50)    targname=beo.name;
+
+  //cout<<pos<<"  "<<pos1<<"  "<<targname<<endl;
+  return targname;
+}
+
+TString GetTargetfall(TChain *tree2, int run){
+
+  //cout << run << endl;
+  TString targname;
+
+  target h3={32973114,"Tritium"};
+  target d2={29234234,"Deuterium"};
+  target h={25495354,"Hydrogen"};
+  target he3={21756474,"Helium3"};
+  target empty={18017594,"Empty Cell"};
+  target dummy={15042096,"Dummy"};
+  target optics={14241329,"Multifoils"};
+  target hole={12954519,"Carbon Hole"};
+  target raster={12290609,"Raster Target"};
+  target al={11575345,"Thick Aluminum"};
+  target single={10860081,"Single Carbon Foil"};
+  target ti={10144817,"Titanium"};
+  target beo={9429553,"BeO"};
+
+
+  Double_t pos,pos1,i=0;
+  
+  tree2->SetBranchAddress("haBDSPOS",&pos);
+  
+  Int_t nn=tree2->GetEntries(); 
+  
+  for(i=0;i<nn;i++){
+    tree2->GetEntry(i);     
+    if(pos<0) continue;
+    pos1=pos;
+  }
+
   tree2->GetEntry(Int_t(nn-2)); 
   if (pos1!=pos) targname="unkown,target moved during the run"; 
   else if(fabs(pos)<= 0.000000001 ) {targname ="Unkown";}
@@ -551,7 +617,22 @@ vector<Double_t> time_cut(int run, TChain *b1, double I){
 //================Charge Calculation ==============================//
 //=================================================================//
 
-tuple<double, double, double> charge_f(int run, TChain *b1, vector<double> t1){
+tuple<double, double, double> charge_f(int run, TChain *b1, vector<double> t1, Double_t I){
+
+  //===========chage constants for december and fall=====//
+
+  if(run<1000){
+    Double_t g = 3.26e-04;
+    Double_t o = 1.05e-01;//0.0127
+  }
+  if((run>3704 && run<3954) || (run>93729 && run<94016)){
+    Double_t g = 3.30e-04;
+    Double_t o = -8.41e-02;//0.0127
+  }
+  if((run>3953 && run<4500) || (run>94015)){
+    Double_t g = 3.25e-04;
+    Double_t o = -1.59e-01;//0.0127
+  }
 
   //=============== branches needed ===============================//
   if(run>90000){
@@ -796,7 +877,7 @@ struct RunInformation{
   TCut Current_cut = "";
 };
 
-RunInformation GetRunInformation(Int_t run, TChain *T, TChain *E, TChain *ev){
+RunInformation GetRunInformation(Int_t run, TChain *T, TChain *E, TChain *ev, Double_t I=21.5){
 RunInformation  runinformation;
 
 //========Time cut of good beam ==============//
@@ -808,7 +889,7 @@ if (test.size()==0) exit(1);
 //=== Units Charge  = uC ======//
 //=== Units time    = s  ======//
 Double_t charg, curr, t_b;
-tie(charg, curr, t_b) = charge_f(run, ev, test);
+tie(charg, curr, t_b) = charge_f(run, ev, test, I);
 //========= Boiling ===========================//
 // === Units Boiling (no units) ====//
 // === Units Lum = cm-2 =====//
@@ -835,7 +916,8 @@ for(int i=0;i<t/2; i++){
 TCut cut_cur = Form("%s", cut_t.Data());
 
 
-runinformation.targ=GetTarget(E, run);
+if(run<3500 || (run>93000 && run<93200)  ){runinformation.targ=GetTarget(E, run);}
+else{runinformation.targ=GetTargetfall(E, run);}
 runinformation.timevalues = test;
 runinformation.charge = charg;
 runinformation.current = curr;
