@@ -61,7 +61,7 @@ TString arm = "L";
 if(run>90000){ totalcut = sh_cut_R + cer_cut_R + track_R; arm = "R";
 trigger = trigger_R;
 trigger1 = trigger4_R;
-trigger3 = trigger5_R;
+trigger3 = trigger6_R;
 }
 //=================================================//
 
