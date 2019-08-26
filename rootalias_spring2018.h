@@ -211,7 +211,10 @@ TCut cer_cut_R=Form("R.cer.asum_c>%g && R.cer.asum_c<%g",cer_min_R, cer_max_R);
 TCut cer_cut_Reff=Form("R.cer.asum_c>%g && R.cer.asum_c<%g",cer_mineff_R, cer_max_R);
 TCut track_R="R.tr.n==1";
 TCut track_R_eff="R.tr.n>0";
-TCut trigger_R = "DR.bit5>0";
+TCut trigger_R = "(DR.evtypebits>>5)&1";
+TCut trigger6_R = "(DR.evtypebits>>6)&1";
+TCut trigger4_R = "(DR.evtypebits>>4)&1";
+
 TCut triggereff_R = "DR.bit4>0";
 
 TCut dp_cut_R_loose = Form("fabs(R.tr.tg_dp)<%g",tg_dp_R_loose);

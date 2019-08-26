@@ -7,7 +7,7 @@ TChain *T;
 TChain *E;
 
 
-void vdc_check( Int_t run; ){
+void vdc_check( Int_t run ){
 HallA_style();
 
 
@@ -53,8 +53,16 @@ TGaxis::SetMaxDigits(3);
 
 //=================================================//
 TCut totalcut = sh_cut_L + cer_cut_L + track_L;
+TCut trigger = trigger_L;
+TCut trigger1 = trigger1_L;
+TCut trigger3 = trigger3_L;
+
 TString arm = "L";
-if(run>90000){ totalcut = sh_cut_R + cer_cut_R + track_R; arm = "R";}
+if(run>90000){ totalcut = sh_cut_R + cer_cut_R + track_R; arm = "R";
+trigger = trigger_R;
+trigger1 = trigger4_R;
+trigger3 = trigger5_R;
+}
 //=================================================//
 
 //-----2D rawtime histograms
@@ -68,9 +76,9 @@ T = LoadRun(run,"T");
 
 auto legend1 = new TLegend(0.4,0.7,0.6,0.85);
 
-legend1->AddEntry(hist1time,"Trigger 1","l");
-legend1->AddEntry(hist2time,"Trigger 2","l");
-legend1->AddEntry(hist3time,"Trigger 3","l");
+legend1->AddEntry(hist1time,"Trigger (s0&s2)","l");
+legend1->AddEntry(hist2time,"Trigger (s0&s2)&cer","l");
+legend1->AddEntry(hist3time,"Trigger (s0||s2)&cer","l");
 legend1->AddEntry((TObject*)0, Form("Run %i",run), "");
 
 
@@ -78,9 +86,9 @@ for(Int_t i =1; i<5; i++){
 
 c1->cd(i);
 hist1->SetTitle(Form(";%s Rawtime;",vdc[i-1].Data()));
-T->Draw(Form("%s.vdc.%s.rawtime>>hist1",arm.Data(),vdc[i-1].Data()),trigger1_L,"");
-T->Draw(Form("%s.vdc.%s.rawtime>>hist2",arm.Data(),vdc[i-1].Data()),trigger_L,"same");
-T->Draw(Form("%s.vdc.%s.rawtime>>hist3",arm.Data(),vdc[i-1].Data()),trigger3_L,"same");
+T->Draw(Form("%s.vdc.%s.rawtime>>hist1",arm.Data(),vdc[i-1].Data()),trigger1,"");
+T->Draw(Form("%s.vdc.%s.rawtime>>hist2",arm.Data(),vdc[i-1].Data()),trigger,"same");
+T->Draw(Form("%s.vdc.%s.rawtime>>hist3",arm.Data(),vdc[i-1].Data()),trigger3,"same");
 if(i==1) legend1->Draw();
 gPad->Update();
 }
@@ -88,9 +96,9 @@ gPad->Update();
 for(Int_t i =1; i<5; i++){
 c2->cd(i);
 hist1time->SetTitle(Form(";%s time (ns);",vdc[i-1].Data()));
-T->Draw(Form("%s.vdc.%s.time/1e-9>>hist1time",arm.Data(),vdc[i-1].Data()),trigger1_L,"");
-T->Draw(Form("%s.vdc.%s.time/1e-9>>hist2time",arm.Data(),vdc[i-1].Data()),trigger_L,"same");
-T->Draw(Form("%s.vdc.%s.time/1e-9>>hist3time",arm.Data(),vdc[i-1].Data()),trigger3_L,"same");
+T->Draw(Form("%s.vdc.%s.time/1e-9>>hist1time",arm.Data(),vdc[i-1].Data()),trigger1,"");
+T->Draw(Form("%s.vdc.%s.time/1e-9>>hist2time",arm.Data(),vdc[i-1].Data()),trigger,"same");
+T->Draw(Form("%s.vdc.%s.time/1e-9>>hist3time",arm.Data(),vdc[i-1].Data()),trigger3,"same");
 if(i==1) legend1->Draw();
 gPad->Update();
 }
