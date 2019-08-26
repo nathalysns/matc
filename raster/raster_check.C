@@ -39,10 +39,14 @@ Double_t raster2ycur_min = T->GetMinimum(Form("%srb.Raster2.rawcur.y",arm.Data()
 Double_t raster2ycur_max = T->GetMaximum(Form("%srb.Raster2.rawcur.y",arm.Data()))+3000;
 
 
-Double_t bpmxmin = (T->GetMinimum(Form("%srb.BPMB.x",arm.Data()))-2.5);
-Double_t bpmxmax = (T->GetMaximum(Form("%srb.BPMB.x",arm.Data())));
-Double_t bpmymin = (T->GetMinimum(Form("%srb.BPMB.y",arm.Data())));
-Double_t bpmymax = (T->GetMaximum(Form("%srb.BPMB.y",arm.Data()))+3);
+//Double_t bpmxmin = -2; 
+Double_t bpmxmin = (T->GetMinimum(Form("%srb.BPMB.x",arm.Data()))-2);
+//Double_t bpmxmax = 2;
+Double_t bpmxmax = (T->GetMaximum(Form("%srb.BPMB.x",arm.Data()))+2);
+//Double_t bpmymin = -10;
+Double_t bpmymin = (T->GetMinimum(Form("%srb.BPMB.y",arm.Data()))-2);
+//Double_t bpmymax = 10;
+Double_t bpmymax =  (T->GetMaximum(Form("%srb.BPMB.y",arm.Data()))+2);
 
 cout << bpmxmin << "   " << bpmxmax << endl;
 cout << bpmymin << "   " << bpmymax << endl;
@@ -54,13 +58,17 @@ Double_t rasterymax = (T->GetMaximum(Form("%srb.Raster2.target.y",arm.Data()))+0
 
 //=================================================//
 TString target_data = "Unknown";
-RunInformation  runinformation   = GetRunInformation(run, T, E, ev, 22.);
+Int_t I_run = 21;
+
+if (run>923 && run<948)I_run = 10;
+
+RunInformation  runinformation   = GetRunInformation(run, T, E, ev, I_run);
 target_data = runinformation.targ;
 
-if(target_data == "Unknown") target_data = target;
+if(target_data == "unkown,target moved during the run") target_data = target;
 //=================================================//
 
-auto* legend = new TLegend(0.12, 0.75, .23, .88);
+auto* legend = new TLegend(0.11, 0.75, .3, .88);
 legend->AddEntry((TObject*)0, "", "");
 legend->AddEntry((TObject*)0, Form("Run %i", run), "");
 legend->AddEntry((TObject*)0, Form("Taget %s", target_data.Data()), "");
