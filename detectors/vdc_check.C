@@ -119,9 +119,9 @@ gPad->Update();
 }
 
 cout<< " Run ----- "<< run << endl;
-c1->SaveAs(Form("vdc_%i_Plots.pdf(",run));
-c2->SaveAs(Form("vdc_%i_Plots.pdf",run));
-c3->SaveAs(Form("vdc_%i_Plots.pdf",run));
-c4->SaveAs(Form("vdc_%i_Plots.pdf)",run));
+c1->SaveAs(Form("plots/vdc_%i_Plots.pdf(",run));
+c2->SaveAs(Form("plots/vdc_%i_Plots.pdf",run));
+c3->SaveAs(Form("plots/vdc_%i_Plots.pdf",run));
+c4->SaveAs(Form("plots/vdc_%i_Plots.pdf)",run));
 
 }
