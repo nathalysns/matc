@@ -24,7 +24,7 @@ TString vdc[4] = {"u1","u2","v1","v2"};
 //------raw time histograms -------------//
 Int_t NBins = 100;
 Int_t MIN = 1100;
-Int_t MAX = 2000;
+Int_t MAX = 2200;
 TH1F* hist1 = new TH1F("hist1","",NBins,MIN,MAX);
 TH1F* hist2 = new TH1F("hist2","",NBins,MIN,MAX);
 TH1F* hist3 = new TH1F("hist3","",NBins,MIN,MAX);
