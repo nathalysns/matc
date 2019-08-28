@@ -42,7 +42,7 @@ void s0(Int_t run){
     max = myfunc->GetParameter(1) + 1.5*myfunc->GetParameter(2);
     tt2->Fit("landau","Q","",min,max);
     TF1 *myfunc2=tt2->GetFunction("landau");
-    cout<<"peak channel l: "<<myfunc2->GetParameter(1) << "+/-" <<myfunc2->GetParameter(2) <<endl;
+    cout<<"peak channel l: "<<myfunc2->GetParameter(1) << "+/-" <<myfunc2->GetParError(1) <<endl;
 
     T->Draw(Form("%s.s0.ra_c>>tt3", arm.Data()),trigger,"goff");
     tt2->SetXTitle(Form("%s.s0.ra_c", arm.Data()));
@@ -55,15 +55,15 @@ void s0(Int_t run){
     maxr = myfuncr->GetParameter(1) + 1.5*myfuncr->GetParameter(2);
     tt3->Fit("landau","Q","",minr,maxr);
     TF1 *myfunc2r=tt3->GetFunction("landau");
-    cout<<"peak channel r: "<<myfunc2r->GetParameter(1) << "+/-" <<myfunc2r->GetParameter(2) <<endl;
+    cout<<"peak channel r: "<<myfunc2r->GetParameter(1) << "+/-" <<myfunc2r->GetParError(1) <<endl;
 
   ofstream outfile;
   outfile.open ("s0.txt",ios::in|ios::app);
   outfile << setiosflags(ios::left) << setw(8) << run;
   outfile << setiosflags(ios::left) << setw(15) << myfunc2->GetParameter(1);
-  outfile << setiosflags(ios::left) << setw(15) << myfunc2->GetParameter(2);
+  outfile << setiosflags(ios::left) << setw(15) << myfunc2->GetParError(1);
   outfile << setiosflags(ios::left) << setw(15) << myfunc2r->GetParameter(1);
-  outfile << setiosflags(ios::left) << setw(15) << myfunc2r->GetParameter(2) << endl;
+  outfile << setiosflags(ios::left) << setw(15) << myfunc2r->GetParError(1) << endl;
   outfile.close();
 }
 
