@@ -33,8 +33,8 @@ void s0(Int_t run){
     T->Draw(Form("%s.s0.la_c>>tt2", arm.Data()),trigger,"");
     tt2->SetXTitle(Form("%s.s0.la_c", arm.Data()));
     Int_t max_bin = tt2->GetMaximumBin();
-    Double_t min = tt2->GetBinCenter(max_bin) - 100;
-    Double_t max = tt2->GetBinCenter(max_bin) + 100;
+    Double_t min = tt2->GetBinCenter(max_bin) - 500;
+    Double_t max = tt2->GetBinCenter(max_bin) + 500;
     tt2->Fit("landau","Q","",min,max);
 
     TF1 *myfunc=tt2->GetFunction("landau");
@@ -47,8 +47,8 @@ void s0(Int_t run){
     T->Draw(Form("%s.s0.ra_c>>tt3", arm.Data()),trigger,"goff");
     tt2->SetXTitle(Form("%s.s0.ra_c", arm.Data()));
     Int_t max_binr = tt3->GetMaximumBin();
-    Double_t minr = tt3->GetBinCenter(max_binr) - 100;
-    Double_t maxr = tt3->GetBinCenter(max_binr) + 100;
+    Double_t minr = tt3->GetBinCenter(max_binr) - 500;
+    Double_t maxr = tt3->GetBinCenter(max_binr) + 500;
     tt3->Fit("landau","Q","",minr,maxr);
     TF1 *myfuncr=tt3->GetFunction("landau");
     minr = myfuncr->GetParameter(1) - 2*myfuncr->GetParameter(2);
@@ -65,6 +65,7 @@ void s0(Int_t run){
   outfile << setiosflags(ios::left) << setw(15) << myfunc2r->GetParameter(1);
   outfile << setiosflags(ios::left) << setw(15) << myfunc2r->GetParError(1) << endl;
   outfile.close();
+
 }
 
    
