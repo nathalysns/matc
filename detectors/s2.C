@@ -10,8 +10,6 @@ TChain *E;
 void s2(Int_t run){
    
     HallA_style();
-    TH1F *s2l = new TH1F("s2l","",100,100,500);
-    TH1F *s2r = new TH1F("s2r","",100,100,500);
 
     //=================================================//
     TCut totalcut = sh_cut_L + cer_cut_L + track_L;
@@ -19,13 +17,17 @@ void s2(Int_t run){
     TCut trigger1 = trigger1_L;
     TCut trigger3 = trigger3_L;
 
+    Int_t adc_ini =200;
     TString arm = "L";
     if(run>90000){ totalcut = sh_cut_R + cer_cut_R + track_R; arm = "R";
     trigger = trigger_R;
     trigger1 = trigger4_R;
     trigger3 = trigger6_R;
+    adc_ini = 150;
     }
 
+    TH1F *s2l = new TH1F("s2l","",200,adc_ini,500);
+    TH1F *s2r = new TH1F("s2r","",200,adc_ini,500);
     //run=3102;
     T = LoadRun(run,"T");
     ofstream outfile;
@@ -33,22 +35,22 @@ void s2(Int_t run){
   	
     for(Int_t i=0; i<16;i++){
     	T->Draw(Form("%s.s2.la_c[%i]>>s2l",arm.Data(),i),"","goff");
-    	T->Draw(Form("%s.s2.ra_c[%i]>>s2r",arm.Data(),i),"","goff");
+    	//T->Draw(Form("%s.s2.ra_c[%i]>>s2r",arm.Data(),i),"","goff");
          
-	Double_t len = 80;
-	if(i==0 || i==15) len =50;
+	Double_t len = 40;
+//	#if(i==0 || i==15) len =50;
     	Int_t max_binl = s2l->GetMaximumBin();
     	Double_t minl = s2l->GetBinCenter(max_binl) - len;
-    	Double_t maxl = s2l->GetBinCenter(max_binl) + len;
+    	Double_t maxl = s2l->GetBinCenter(max_binl) + len + 80;
     	s2l->Fit("landau","Q","",minl,maxl);
     	TF1 *myfuncl=s2l->GetFunction("landau");
-    	minl = myfuncl->GetParameter(1) - 1.*myfuncl->GetParameter(2);
-    	maxl = myfuncl->GetParameter(1) + 1.*myfuncl->GetParError(2);
+    	minl = myfuncl->GetParameter(1) - 1.5*myfuncl->GetParameter(2);
+    	maxl = myfuncl->GetParameter(1) + 4*myfuncl->GetParError(2);
     	s2l->Fit("landau","Q","",minl,maxl);
     	TF1 *myfunc2l=s2l->GetFunction("landau");
     	cout<<"peak channel l: "<<myfunc2l->GetParameter(1) << "+/-" <<myfunc2l->GetParError(1) <<endl;
 
-
+/*
     	Int_t max_binr = s2r->GetMaximumBin();
     	Double_t minr = s2r->GetBinCenter(max_binr) - len;
     	Double_t maxr = s2r->GetBinCenter(max_binr) + len;
@@ -79,5 +81,5 @@ void s2(Int_t run){
 	outfile << endl;
 	outfile.close();
 
-
-}
+*/
+}}
