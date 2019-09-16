@@ -11,7 +11,7 @@ void cer(Int_t run){
 
     HallA_style();
 
-    TH1F *cer = new TH1F("cer","",100,150,600);
+    TH1F *cer[10];
     Int_t N = 101;
 
     //=================================================//
@@ -29,31 +29,30 @@ void cer(Int_t run){
     }
 
     cout << run << endl;
-
+    TCanvas *c1 = new TCanvas("c1","c1");
+    c1->SetCanvasSize(1500, 1500);
+    c1->SetWindowSize(500, 500);
+    c1->Divide(5,5);
     //run=3102;
     T = LoadRun(run,"T");
     ofstream outfile;
-  	outfile.open ("cer.txt",ios::in|ios::app);
-  	outfile << setiosflags(ios::left) << setw(8) << run;
-	for(Int_t i=0; i<10;i++){
-
-    	T = LoadRun(run,"T");
-    	T->Draw(Form("%s.cer.a_c[%i]>>cer",i),arm, trigger_L,"goff");
-      Double_t min = 240;
-      Double_t max = 350;
-      
-
-      cer->Fit("gaus","Q","",min,max);
-   		TF1 *myfunc=cer->GetFunction("gaus");
-   		cout << "Peak  = " <<  myfunc->GetParameter(1) << " +/- " << myfunc->GetParameter(2) << endl;
-
-   		outfile << setiosflags(ios::left) << setw(15) << myfunc->GetParameter(1);
-  		outfile << setiosflags(ios::left) << setw(15) << myfunc->GetParameter(2);
+    outfile.open ("cer.txt",ios::in|ios::app);
+    outfile << setiosflags(ios::left) << setw(8) << run;
+    for(Int_t i=0; i<10;i++){
+	c1->cd(i+1);
+        cer[i] = new TH1F(Form("cer%i",i),"",100,100,800);
+    	T->Draw(Form("%s.cer.a_c[%i]>>cer%i",arm.Data(), i, i), trigger1, "");
+        Double_t min = 210;
+        Double_t max = 450;
+        cer[i]->Fit("gaus","Q","",min,max);
+   	TF1 *myfunc=cer[i]->GetFunction("gaus");
+   	cout << "Peak  = " <<  myfunc->GetParameter(1) << " +/- " << myfunc->GetParError(2) << endl;
+   	outfile << setiosflags(ios::left) << setw(15) << myfunc->GetParError(1);
+  	outfile << setiosflags(ios::left) << setw(15) << myfunc->GetParError(2);
 	}
 
-  outfile << endl;
-
-	outfile.close();
+    outfile << endl;
+    outfile.close();
 
  
 }
