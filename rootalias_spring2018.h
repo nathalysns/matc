@@ -46,7 +46,7 @@
 const char* PATHS[] = {
 
   "/Volumes/MOTI/leiqaa",
-  "/Users/nathalysantiesteban/Documents/rootfiles",
+  "/Users/nathaly/Documents/rootfiles",
   
   //"/Users/nathalysantiesteban/Documents/nathaly",
   "/volatile/halla/triton/nathaly/Rootfiles/dectest",
@@ -193,17 +193,18 @@ const double cer_min_R=2000;
 const double cer_max_R=50000;
 const double cer_mineff_R=1000;
 //=========Loose cuts =====================//
-const double tg_ph_R_loose=0.035;
+const double tg_ph_R_loose=0.05;
 const double tg_th_R_loose=0.06;
-const double tg_dp_R_loose=0.04;
+const double tg_dp_R_loose=0.05;
 //=========Tight cuts =====================//
-const double tg_ph_R_tight=0.015;
-const double tg_th_R_tight=0.025;
-const double tg_dp_R_tight=0.025;
+const double tg_ph_R_tight=0.03;
+const double tg_th_R_tight=0.035;
+const double tg_dp_R_tight=0.03;
 
 //========= Target =====================//
 const double tg_vz_R_tight=0.08;
 const double tg_vz_R_loose=0.08;
+
 
 TCut sh_cut_R=Form("((R.ps.e+R.sh.e)>R.tr.p[0]*1000*%g) && ((R.ps.e+R.sh.e)<R.tr.p[0]*1000*%g)",sh_min_R,sh_max_R);
 TCut sh_cut_Reff=Form("((R.ps.e+R.sh.e)>R.tr.p[0]*1000*%g) && ((R.ps.e+R.sh.e)<R.tr.p[0]*1000*%g)",sh_mineff_R,sh_max_R);
@@ -230,6 +231,9 @@ TCut z_cut_R_tight=Form("fabs(R.tr.vz)<%g",tg_vz_R_tight);
 
 TCut Rtotal_cut_loose = dp_cut_R_loose+ th_cut_R_loose+ ph_cut_R_loose + sh_cut_R + cer_cut_R + track_R + trigger_R + z_cut_R_loose;
 TCut Rtotal_cut_tight = dp_cut_R_tight + th_cut_R_tight + ph_cut_R_tight  + sh_cut_R + cer_cut_R + track_R + trigger_R + z_cut_R_tight;
+
+TCut acc_cut_tightR = dp_cut_R_tight + th_cut_R_tight + ph_cut_R_tight;
+
 
 // called by sort function to do descending sort
 // bool wayToSort(int i, int j) { return i > j; }
