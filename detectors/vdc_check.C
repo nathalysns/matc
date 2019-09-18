@@ -52,13 +52,13 @@ hist3time->SetLineWidth(2);
 TGaxis::SetMaxDigits(3);
 
 //=================================================//
-TCut totalcut = sh_cut_L + cer_cut_L + track_L;
+TCut totalcut = sh_cut_L + cer_cut_L + acc_cut_tightL;
 TCut trigger = trigger_L;
 TCut trigger1 = trigger1_L;
 TCut trigger3 = trigger3_L;
 
 TString arm = "L";
-if(run>90000){ totalcut = sh_cut_R + cer_cut_R + track_R; arm = "R";
+if(run>90000){ totalcut = sh_cut_R + cer_cut_R + acc_cut_tightR; arm = "R";
 trigger = trigger_R;
 trigger1 = trigger4_R;
 trigger3 = trigger6_R;
@@ -86,9 +86,9 @@ for(Int_t i =1; i<5; i++){
 
 c1->cd(i);
 hist1->SetTitle(Form(";%s Rawtime;",vdc[i-1].Data()));
-T->Draw(Form("%s.vdc.%s.rawtime>>hist1",arm.Data(),vdc[i-1].Data()),trigger1,"");
-T->Draw(Form("%s.vdc.%s.rawtime>>hist2",arm.Data(),vdc[i-1].Data()),trigger,"same");
-T->Draw(Form("%s.vdc.%s.rawtime>>hist3",arm.Data(),vdc[i-1].Data()),trigger3,"same");
+T->Draw(Form("%s.vdc.%s.rawtime>>hist1",arm.Data(),vdc[i-1].Data()),trigger1 + totalcut,"");
+T->Draw(Form("%s.vdc.%s.rawtime>>hist2",arm.Data(),vdc[i-1].Data()),trigger + totalcut,"same");
+T->Draw(Form("%s.vdc.%s.rawtime>>hist3",arm.Data(),vdc[i-1].Data()),trigger3 + totalcut,"same");
 if(i==1) legend1->Draw();
 gPad->Update();
 }
@@ -96,9 +96,9 @@ gPad->Update();
 for(Int_t i =1; i<5; i++){
 c2->cd(i);
 hist1time->SetTitle(Form(";%s time (ns);",vdc[i-1].Data()));
-T->Draw(Form("%s.vdc.%s.time/1e-9>>hist1time",arm.Data(),vdc[i-1].Data()),trigger1,"");
-T->Draw(Form("%s.vdc.%s.time/1e-9>>hist2time",arm.Data(),vdc[i-1].Data()),trigger,"same");
-T->Draw(Form("%s.vdc.%s.time/1e-9>>hist3time",arm.Data(),vdc[i-1].Data()),trigger3,"same");
+T->Draw(Form("%s.vdc.%s.time/1e-9>>hist1time",arm.Data(),vdc[i-1].Data()),trigger1 + totalcut,"");
+T->Draw(Form("%s.vdc.%s.time/1e-9>>hist2time",arm.Data(),vdc[i-1].Data()),trigger + totalcut,"same");
+T->Draw(Form("%s.vdc.%s.time/1e-9>>hist3time",arm.Data(),vdc[i-1].Data()),trigger3 + totalcut,"same");
 if(i==1) legend1->Draw();
 gPad->Update();
 }
@@ -106,7 +106,7 @@ gPad->Update();
 for(Int_t i =1; i<5; i++){
 c3->cd(i);
 hist12D->SetTitle(Form(";%s rawtime; Wire Number;",vdc[i-1].Data()));
-T->Draw(Form("%s.vdc.%s.wire:%s.vdc.%s.rawtime>>hist12D",arm.Data(),vdc[i-1].Data(),arm.Data(),vdc[i-1].Data()),"","colz");
+T->Draw(Form("%s.vdc.%s.wire:%s.vdc.%s.rawtime>>hist12D",arm.Data(),vdc[i-1].Data(),arm.Data(),vdc[i-1].Data()),totalcut + trigger,"colz");
 gPad->Update();
 }
 
@@ -114,7 +114,7 @@ for(Int_t i =1; i<5; i++){
 c4->cd(i);
 hist12Dtime->SetTitle(Form(";%s time (ns); Wire Number;",vdc[i-1].Data()));
 hist1time->SetTitle(Form(";%s rawtime; Wire Number);",vdc[i-1].Data()));
-T->Draw(Form("%s.vdc.%s.wire:%s.vdc.%s.time/1e-9>>hist12Dtime",arm.Data(),vdc[i-1].Data(),arm.Data(),vdc[i-1].Data()),"","colz");
+T->Draw(Form("%s.vdc.%s.wire:%s.vdc.%s.time/1e-9>>hist12Dtime",arm.Data(),vdc[i-1].Data(),arm.Data(),vdc[i-1].Data()),totalcut + trigger,"colz");
 gPad->Update();
 }
 
