@@ -93,7 +93,7 @@ void cer(Int_t run){
     Double_t max2 = 6500;
 
     if(run>90000){ max2 = 8500; }
-    if(run>92000){ min2 = 2500 }
+    if(run>92000){ min2 = 2500; }
 
     TF1 *myfunc2 = new TF1("myfunc2",fitf,min2,max2,3);
     myfunc2->SetParameters(100,500,1);
