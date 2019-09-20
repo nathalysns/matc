@@ -15,6 +15,10 @@ Double_t fitf(Double_t *x, Double_t *par)
    //Double_t fitval = par[0]*TMath::Power((par[1]/par[2]),(x[0]/par[2]))*(TMath::Exp(-(par[1]/par[2])))/TMath::Gamma((x[0]/par[2])+1.);
    Double_t fitval = par[0]*TMath::Power(par[1],(x[0]/par[2]))*(TMath::Exp(-(par[1])))/TMath::Gamma((x[0]/par[2])+1.);
    
+//   p0           3.16472e+03   3.76482e+01   9.50020e-02  -1.23773e-05
+//   p1           4.76424e+03   1.08302e+01   7.73625e-02  -1.29758e-04
+//   p2           4.91538e+02   8.93434e+00   2.06813e-02   1.43984e-04
+
    return fitval;
 }
 
@@ -58,15 +62,20 @@ void cer(Int_t run){
     //=======Looping in all the pmts
 
     for(Int_t i=0; i<10;i++){
+    Double_t cermin = 2000;
+    Double_t cermax = 7000;
+
+    if(run>90000){ cermax = 10000; }
+
 	cer[i] = new TH1F(Form("cer%i",i),"", 100,100,500);
-    cer2[i] = new TH1F(Form("cer2%i",i),"",400,2000,7000);
+    cer2[i] = new TH1F(Form("cer2%i",i),"",250,cermin,cermax);
 
 
     c1->cd(i+1);
     cer[i]->SetTitle(Form("pmt %i;ADC channel;  ",i+1));
     cer[i]->SetLineColor(1);
     cer[i]->SetLineWidth(1);
-    T->Draw(Form("%s.cer.a_c[%i]>>cer%i",arm.Data(), i, i), trigger1 + totalcut, "");
+    T->Draw(Form("%s.cer.a_c[%i]>>cer%i",arm.Data(), i, i), trigger, "");
     Double_t min = 180;
     Double_t max = 420;
     cer[i]->Fit("gaus","Q","",min,max);
@@ -83,11 +92,12 @@ void cer(Int_t run){
     Double_t min2 = 3500;
     Double_t max2 = 6500;
 
+    if(run>90000){ max2 = 8500; }
 
-    TF1 *myfunc2 = new TF1("myfunc2",fitf,2900,5900,3);
+    TF1 *myfunc2 = new TF1("myfunc2",fitf,min2,max2,3);
     myfunc2->SetParameters(100,500,1);
     myfunc2->SetParameters(2000,10,500);
-    cer2[i]->Fit("myfunc2","Q","",2800,6000);
+    cer2[i]->Fit("myfunc2","Q","",min2,max2);
     myfunc2->SetLineColor(2);
     myfunc2->SetLineWidth(3);
     myfunc2->Draw("same");
