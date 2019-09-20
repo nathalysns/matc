@@ -49,6 +49,8 @@ const char* PATHS[] = {
   "/Users/nathaly/Documents/rootfiles",
   
   //"/Users/nathalysantiesteban/Documents/nathaly",
+ 
+  "/volatile/halla/triton/nathaly/Rootfiles",
   "/volatile/halla/triton/nathaly/Rootfiles/dectest",
   "/volatile/halla/triton/nathaly/Rootfiles/test",
   //"/volatile/halla/triton/nathaly/Rootfiles/reyoptics/", 

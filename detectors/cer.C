@@ -15,10 +15,6 @@ Double_t fitf(Double_t *x, Double_t *par)
    //Double_t fitval = par[0]*TMath::Power((par[1]/par[2]),(x[0]/par[2]))*(TMath::Exp(-(par[1]/par[2])))/TMath::Gamma((x[0]/par[2])+1.);
    Double_t fitval = par[0]*TMath::Power(par[1],(x[0]/par[2]))*(TMath::Exp(-(par[1])))/TMath::Gamma((x[0]/par[2])+1.);
    
-//   p0           3.16472e+03   3.76482e+01   9.50020e-02  -1.23773e-05
-//   p1           4.76424e+03   1.08302e+01   7.73625e-02  -1.29758e-04
-//   p2           4.91538e+02   8.93434e+00   2.06813e-02   1.43984e-04
-
    return fitval;
 }
 
