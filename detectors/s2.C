@@ -91,5 +91,6 @@ void s2(Int_t run){
 
 	outfile << endl;
 	outfile.close();
-
+   c1->SaveAs(Form("plots/s2l_%i.pdf",run));
+   c2->SaveAs(Form("plots/s2r_%i.pdf",run));
 }
