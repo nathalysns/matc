@@ -10,7 +10,6 @@ TChain *E;
 
 void sh(Int_t run){
 
-    Int_t run;
     HallA_style();
     TCanvas* c1 = new TCanvas("c1","",1000,800);
     TH2F *prej = new TH2F("prej","",300,-1.5,1.5,300,0,1.5);
@@ -39,7 +38,7 @@ void sh(Int_t run){
     T->Draw("(L.prl1.e+L.prl2.e)/L.tr.p[0]/1000:L.prl2.trx>>prej",trigger,"colz");
     }
 
-    c1->SaveAs(Form("sh_%i.pdf",run));
+    c1->SaveAs(Form("plots/sh_%i.pdf",run));
  
 
 
