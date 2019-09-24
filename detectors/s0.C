@@ -51,7 +51,7 @@ void s0(Int_t run){
     TF1 *myfunc2=tt2->GetFunction("landau");
     cout<<"peak channel l: "<<myfunc2->GetParameter(1) << "+/-" <<myfunc2->GetParError(1) <<endl;
 
-    c2->cd(2);
+    c1->cd(2);
     T->Draw(Form("%s.s0.ra_c>>tt3", arm.Data()),trigger,"");
     tt2->SetXTitle(Form("%s.s0.ra_c", arm.Data()));
     Int_t max_binr = tt3->GetMaximumBin();
