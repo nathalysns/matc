@@ -62,10 +62,33 @@ double LT, LTrecord, LTcounts, LTer;
 LT = LTrecord = LTcounts = LTer = 0;
 tie(LT, LTrecord, LTcounts, LTer)= livetime(run,ev,T,datacurrentvalues, ps, datacurrentcut); 
 cout << "Prescale Factor: " << ps << " Live-time: " << LT << " +/- " << LTer << endl;
+cout << "Number of events recorded: " << LTrecord << endl;
+cout << "Number of events counted: " << LTcounts << endl; 
+cout << "time with beam: " << datatime_beam << endl;
+
+TCanvas *c1= new TCanvas("c1","",1500,800);
+c1->Divide(1,2);
+c1->cd(1);
+TH1F *h1;
+if(run<90000){
+T->Draw("evLeftdnew_r:evLeftLclock/103700>>h1","","*");
+}else{
+T->Draw("evRightdnew_r:evRightLclock/103700>>h1","","*");
+}
+c1->cd(2);
+TH1F *h2;
+if(run<90000){
+T->Draw("evLeftdnew_r:evLeftLclock/103700>>h2",datacurrentcut,"*");
+}else{
+T->Draw("evRightdnew_r:evRightLclock/103700>>h1",datacurrentcut,"*");
+}
 
 outfile << setiosflags(ios::left) << setw(15) << ps;
 outfile << setiosflags(ios::left) << setw(15) << LT;
 outfile << setiosflags(ios::left) << setw(15) << LTer;
+outfile << setiosflags(ios::left) << setw(15) << LTrecord;
+outfile << setiosflags(ios::left) << setw(15) << LTcounts;
+outfile << setiosflags(ios::left) << setw(15) << datatime_beam;
 outfile << endl;
 outfile.close();
 

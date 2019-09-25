@@ -79,7 +79,7 @@ struct target
 
 
 //=========bcm calibtration constants ==========//
-double I=21.5;
+//double I=13.;
 const double protonmass = 0.93827231;
 
 //========== Constants for the Spring Calibration =======//
@@ -564,6 +564,23 @@ TString GetPath(Int_t run)
 //=============== Cuts gor time with the current cut =============//
 //=================================================================//
 vector<Double_t> time_cut(int run, TChain *b1, double I){
+
+  //===========chage constants for december and fall=====//
+  
+  if(run<1000){
+  	g = 3.26e-04;
+        o = 1.05e-01;//0.0127
+  }
+  //if((run>3704 && run<3954) || (run>93729 && run<94016)){
+  if(run>93200 && run<94016){
+  	g = 3.30e-04;
+        o = -8.41e-02;//0.0127
+  }
+  if((run>3953 && run<4500) || (run>94015)){
+        g = 3.25e-04;
+        o = -1.59e-01;//0.0127
+  }
+
  //==== needed branches =========================// 
   if(run>90000){
     b1->SetBranchAddress("evRightdnew_r",&dnew_r);
@@ -644,6 +661,8 @@ tuple<double, double, double> charge_f(int run, TChain *b1, vector<double> t1, D
   if(run>90000){
 
     b1->SetBranchAddress("evRightLclock", &clock_counts);
+    b1->SetBranchAddress("evRightdnew_r",&dnew_r);
+    b1->SetBranchAddress("evRightdnew", &dnew);
   }else{
     b1->SetBranchAddress("evLeftdnew_r",&dnew_r);
     b1->SetBranchAddress("evLeftdnew", &dnew);  
@@ -883,13 +902,13 @@ struct RunInformation{
   TCut Current_cut = "";
 };
 
-RunInformation GetRunInformation(Int_t run, TChain *T, TChain *E, TChain *ev, Double_t I=21.5){
+RunInformation GetRunInformation(Int_t run, TChain *T, TChain *E, TChain *ev, Double_t I=21){
 RunInformation  runinformation;
 
 //========Time cut of good beam ==============//
 vector<Double_t> test = time_cut(run,ev,I);
 //cout << test.size() << endl;
-if (test.size()==0) exit(1);
+//if (test.size()==0) exit(1);
 //======= Charge Calculation =================//
 //=== Units Current = uA ======//
 //=== Units Charge  = uC ======//
