@@ -86,9 +86,6 @@ const double protonmass = 0.93827231;
 Double_t g = 0.0003451;
 Double_t o = -0.0016;//0.0127
 
-
-const Double_t g_er = 2.237e-7;
-const Double_t o_er = 0.09432;
 const Double_t I_Cut = 1.5;
 Int_t bins = 150;
 const Double_t vz = 0.2;
