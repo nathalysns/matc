@@ -65,7 +65,7 @@ cout << "Prescale Factor: " << ps << " Live-time: " << LT << " +/- " << LTer << 
 cout << "Number of events recorded: " << LTrecord << endl;
 cout << "Number of events counted: " << LTcounts << endl; 
 cout << "time with beam: " << datatime_beam << endl;
-
+/*
 TCanvas *c1= new TCanvas("c1","",1500,800);
 c1->Divide(1,2);
 c1->cd(1);
@@ -82,7 +82,7 @@ T->Draw("evLeftdnew_r:evLeftLclock/103700>>h2",datacurrentcut,"*");
 }else{
 T->Draw("evRightdnew_r:evRightLclock/103700>>h1",datacurrentcut,"*");
 }
-
+*/
 outfile << setiosflags(ios::left) << setw(15) << ps;
 outfile << setiosflags(ios::left) << setw(15) << LT;
 outfile << setiosflags(ios::left) << setw(15) << LTer;

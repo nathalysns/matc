@@ -599,7 +599,7 @@ vector<Double_t> time_cut(int run, TChain *b1, double I){
   dnew_r = dnew = clock_counts =0;  
   test = prev_cur = ttim = tcur = cur = tim = 0;
   Long64_t nentries = b1->GetEntries();
-  int time_wait = 15; //seconds
+  int time_wait = 10; //seconds
   for (int i=0; i<nentries; i++){
       b1->GetEntry(i);  
       cur = g*dnew_r+o; 
@@ -725,7 +725,7 @@ tuple<Double_t, Double_t, Double_t, Double_t> livetime(Int_t run, TChain *b2, TC
     b2->GetEntry(i);
     tim = clock_counts/103700;
     if(tim>=t2[z] && prevtim<t2[z]) t2ini = t2counts;
-    if(tim>=t2[z+1] && prevtim<t2[z+1]){ t2fin = prevt2counts; counts += (t2fin-t2ini); z+=2;}
+    if(tim>t2[z+1] && prevtim<=t2[z+1]){ t2fin = t2counts; counts += (t2fin-t2ini); z+=2;}
     prevtim = tim;
     prevt2counts = t2counts;  
   }
@@ -902,7 +902,11 @@ struct RunInformation{
   TCut Current_cut = "";
 };
 
-RunInformation GetRunInformation(Int_t run, TChain *T, TChain *E, TChain *ev, Double_t I=21){
+RunInformation GetRunInformation(Int_t run, TChain *T, TChain *E, TChain *ev, Double_t I=21.5){
+if(run==891) I=22.;
+if(run>935 && run<948 ) I=10.;
+
+
 RunInformation  runinformation;
 
 //========Time cut of good beam ==============//
