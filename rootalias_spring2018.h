@@ -903,7 +903,7 @@ struct RunInformation{
 };
 
 RunInformation GetRunInformation(Int_t run, TChain *T, TChain *E, TChain *ev, Double_t I=21.5){
-if(run==891) I=22.;
+if(run==891 || run ==93987) I=22.;
 if(run>932 && run<948 ) I=10.;
 
 
