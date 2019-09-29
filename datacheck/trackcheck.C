@@ -56,6 +56,8 @@ void trackcheck(Int_t run){
   		vdc[i]->SetLineColor(1);
   		vdc[i]->SetTitle(Form("; vdc %s wire; ",VDCwires[i].Data()));
     	T->Draw(Form("%s.vdc.%s.wire>>vdc%i",arm.Data(),VDCwires[i].Data(),i),totalcut);
+    	vdc[i]->SetMaximum(vdc[i]->GetMaximum()+70000);
+    	//cout << "Maximum: " << vdc[i]->GetMaximum() << endl;
     	vdc2[i] = new TH1F(Form("vdc2%i",i),"", 450,-50,400);
     	vdc2[i]->SetLineWidth(2);
   		vdc2[i]->SetLineColor(2);
@@ -65,45 +67,16 @@ void trackcheck(Int_t run){
   		vdc3[i]->SetLineColor(4);
   		vdc3[i]->SetLineStyle(10);
     	T->Draw(Form("%s.vdc.%s.wire>>vdc3%i",arm.Data(),VDCwires[i].Data(),i),totalcut+track,"same");
+
+    	if(i==0){
+    		auto legend1 = new TLegend(0.15,0.7,0.48,0.85);
+    		legend1->AddEntry(vdc[i],"All","l");
+			legend1->AddEntry(vdc3[i],"Trigger (s0&s2)&cer &&  Track == 0","l");
+			legend1->AddEntry(vdc2[i],"Trigger (s0&s2)&cer &&  Track > 0","l");
+			legend1->AddEntry((TObject*)0, Form("Run %i",run), "");
+			legend1->Draw();
+    	}
     }
     
-   
-
-
-  
-
-    
-    
-/*
-    RunInformation  runinformation   = GetRunInformation(run, T, E, ev);
-	Double_t datacharge, datacurrent, datatime_beam;
-	Double_t dataLumInt, databoiling;
-	TCut datacurrentcut;
-	vector<Double_t> datacurrentvalues;
-
-	target_data = runinformation.targ;
-	datacurrentvalues = runinformation.timevalues;
-	datacurrent = runinformation.current;
-	datacharge = runinformation.charge;
-	datatime_beam = runinformation.time_beam;
-	dataLumInt = runinformation.luminosity;
-	databoiling = runinformation.boiling;
-	datacurrentcut  = runinformation.Current_cut;
-	Double_t trk, trker;
-	trk = trker = 0;
-	
-	ofstream outfile;
-	outfile.open ("trackcheckdp.txt",ios::in|ios::app);
-	outfile << setiosflags(ios::left) << setw(8) << run;
-    
-	for(Int_t l=0;l<10; l++){
-		tie(trk,trker) = track_eff(T, datacurrentcut, l);
-		cout << l << " track percentage: " << trk << " +/- " << trker << endl;
-		outfile << setiosflags(ios::left) << setw(15) <<  trk;
-		outfile << setiosflags(ios::left) << setw(15) <<  trker;
-	}
-
-	outfile << endl;
-	outfile.close();
-	*/	
+    //c1->SaveAs(Form("plots/vdc_%i.pdf",run));
 }
