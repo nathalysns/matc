@@ -78,5 +78,5 @@ void trackcheck(Int_t run){
     	}
     }
     
-    //c1->SaveAs(Form("plots/vdc_%i.pdf",run));
+    c1->SaveAs(Form("plots/vdc_%i.pdf",run));
 }
