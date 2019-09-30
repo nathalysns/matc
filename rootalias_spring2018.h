@@ -232,7 +232,7 @@ TCut Rtotal_cut_loose = dp_cut_R_loose+ th_cut_R_loose+ ph_cut_R_loose + sh_cut_
 TCut Rtotal_cut_tight = dp_cut_R_tight + th_cut_R_tight + ph_cut_R_tight  + sh_cut_R + cer_cut_R + track_R + trigger_R + z_cut_R_tight;
 
 TCut acc_cut_tightR = dp_cut_R_tight + th_cut_R_tight + ph_cut_R_tight;
-
+TCut acc_cut_looseR = dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose;
 
 // called by sort function to do descending sort
 // bool wayToSort(int i, int j) { return i > j; }
