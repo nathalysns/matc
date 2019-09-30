@@ -41,4 +41,12 @@ void current(Int_t run){
     cout << "Current " << datacurrent << endl;
 
 
+    ofstream outfile;
+    outfile.open ("current.txt",ios::in|ios::app);
+    outfile << setiosflags(ios::left) << setw(8) << run;
+    outfile << setiosflags(ios::left) << setw(15) << datacurrent;
+    outfile << endl;
+    outfile.close();
+
+
 }
