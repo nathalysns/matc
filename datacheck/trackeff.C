@@ -14,7 +14,9 @@ void trackeff(Int_t run){
     cout << "Run number: " << run << endl;
 
     TH1F *hp=new TH1F("hp","",400,0,4);
-    T->Draw("HacL_D1_P0rb>>hp","","goff");
+    TString mom = "HacL_D1_P0rb";
+    if (run>90000 ) mom = "HacR_D1_P0rb";
+    T->Draw(Form("%s>>hp",mom.Data()),"","goff");
     Double_t p0 = hp->GetMean();
 
     //=================================================//
