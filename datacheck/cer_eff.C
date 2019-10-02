@@ -71,8 +71,8 @@ void cer_eff(Int_t run){
                 sh_apiontest = "(R.ps.e+R.sh.e)/(R.tr.p[0]*1000)<0.5 && (R.ps.e+R.sh.e)/(R.tr.p[0]*1000)>0.0";
 	}
 
-	T->Draw(Form("%s.cer.asum_c>>cer_hist",arm.Data()),  certest + sh_acertest, "goff");
-	T->Draw(Form("%s.cer.asum_c>>pion_hist",arm.Data()),  piontest + sh_apiontest && !trigger, "goff");
+	T->Draw(Form("%s.cer.asum_c>>cer_hist",arm.Data()),  datacurrentcut + certest + sh_acertest, "goff");
+	T->Draw(Form("%s.cer.asum_c>>pion_hist",arm.Data()),  datacurrentcut + piontest + sh_apiontest && !trigger, "goff");
 
 	Int_t cut = 60;
 	Int_t steps = 4500/cut;
@@ -82,6 +82,7 @@ void cer_eff(Int_t run){
 
 	Double_t cer1500 = 0;
    	Double_t pion1500 = 0;
+
 	for(Int_t m=0; m<steps;m++ ){
 	init = init + cut;
 	Int_t bmin = cer_hist->FindBin(init); //in your case xmin=-1.5
@@ -134,6 +135,14 @@ void cer_eff(Int_t run){
      l.DrawLatex(2000,0.4,Form("Run %i",run));
     gPad->Update();
    
+   	ofstream outfile;
+    outfile.open ("cereff.txt",ios::in|ios::app);
+    outfile << setiosflags(ios::left) << setw(8) << run;
+    outfile << setiosflags(ios::left) << setw(15) << cer1500;
+    outfile << setiosflags(ios::left) << setw(15) << pion1500;
+    outfile << endl;
+    outfile.close();
+
     c1->SaveAs(Form("plots/cer_eff_%i.pdf",run)); 
 
 }
