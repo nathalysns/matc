@@ -52,8 +52,8 @@ void cer_eff(Int_t run){
 	//==============Cerenkov Efficiency ==============================//
 	TH1F *cer_hist = new TH1F("cer_hist","", 1000, 0, 20000);
 	TH1F *pion_hist = new TH1F("pion_hist","", 1000, 0, 20000);
-	TCut sh_acertest = "(L.prl1.e+L.prl2.e)/(L.tr.p[0]*1000)<1.1 && (L.prl1.e+L.prl2.e)/(L.tr.p[0]*1000)>0.8";
-	TCut sh_apiontest = "(L.prl1.e+L.prl2.e)/(L.tr.p[0]*1000)<0.3 && (L.prl1.e+L.prl2.e)/(L.tr.p[0]*1000)>0.05";
+	TCut sh_acertest = "(L.prl1.e+L.prl2.e)/(L.tr.p[0]*1000)<1.1 && (L.prl1.e+L.prl2.e)/(L.tr.p[0]*1000)>0.7";
+	TCut sh_apiontest = "(L.prl1.e+L.prl2.e)/(L.tr.p[0]*1000)<0.5 && (L.prl1.e+L.prl2.e)/(L.tr.p[0]*1000)>0.0";
 	
 	TCut trigger = "DL.bit2>0";
 	TCut trigger1 = "DL.bit1>0";
@@ -62,11 +62,13 @@ void cer_eff(Int_t run){
 	arm = "L";
 
 	if(run>90000){
-		TCut trigger = "DL.bit5>0";
-		TCut trigger1 = "DL.bit4>0";
-		certest =  dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose + trigger + track_R;
-		piontest =  dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose + trigger1 + track_R;
+		trigger = "DR.bit5>0";
+		trigger1 = "DR.bit4>0";
+		certest =  datacurrent + dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose + trigger + track_R;
+		piontest =  datacurrent + dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose + trigger1 + track_R;
 		arm = "R";
+		sh_acertest = "(R.ps.e+R.sh.e)/(R.tr.p[0]*1000)<1.1 && (R.ps.e+R.sh.e)/(R.tr.p[0]*1000)>0.7";
+                sh_apiontest = "(R.ps.e+R.sh.e)/(R.tr.p[0]*1000)<0.5 && (R.ps.e+R.sh.e)/(R.tr.p[0]*1000)>0.0";
 	}
 
 	T->Draw(Form("%s.cer.asum_c>>cer_hist",arm.Data()),  certest + sh_acertest, "goff");
@@ -131,7 +133,8 @@ void cer_eff(Int_t run){
     l.DrawLatex(1550,0.6,Form("#color[2]{>%0.2f%% Pion Rejection Efficiency}",pion1500*100));
      l.DrawLatex(2000,0.4,Form("Run %i",run));
     gPad->Update();
-    
+   
+    c1->SaveAs(Form("plots/cer_eff_%i.pdf",run)); 
 
 }
 
