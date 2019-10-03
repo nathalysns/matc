@@ -188,8 +188,8 @@ const double beta_min_R=0.6;
 const double sh_min_R = 0.7;
 const double sh_max_R = 20;
 const double sh_mineff_R = 0.3;
-const double cer_min_R=2000;
-const double cer_max_R=50000;
+const double cer_min_R=1500;
+const double cer_max_R=30000;
 const double cer_mineff_R=1000;
 //=========Loose cuts =====================//
 const double tg_ph_R_loose=0.05;
