@@ -28,11 +28,11 @@ void trigger(Int_t run){
 
 
     if(run>90000){ 
-        TString arm = "R";
-        TCut trig1 = "DR.bit1>0";
-        TCut trig2 = "DR.bit2>0";
-        TCut trig3 = "DR.bit3>0";
-        TCut total =  dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose + track_R + cer_cut_R + sh_cut_R;
+        arm = "R";
+        trig1 = "DR.bit4>0";
+        trig2 = "DR.bit5>0";
+        trig3 = "DR.bit6>0";
+        total =  dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose + track_R + cer_cut_R + sh_cut_R;
     }
 
 

@@ -56,9 +56,10 @@ void sh_draw(Int_t run){
 	  databoiling = runinformation.boiling;
 	  datacurrentcut  = runinformation.Current_cut;
 
-
-    TH2F *sh_t1 = new TH2F("sh_t1","", 500, 0, 2000,500,0,2000);
-    TH2F *sh_t2 = new TH2F("sh_t2","", 500, 0, 2000,500,0,2000);
+    Int_t shmax = 2000;
+    if(run>90000) shmax = 3500;
+    TH2F *sh_t1 = new TH2F("sh_t1","", 500, 0,2000,500,0,shmax);
+    TH2F *sh_t2 = new TH2F("sh_t2","", 500, 0,2000,500,0,shmax);
 
     TH1F *sh_t3 = new TH1F("sh_t3","", 500, 0, 1.5);
     TH1F *sh_t4 = new TH1F("sh_t4","", 500, 0, 1.5);
@@ -81,16 +82,18 @@ void sh_draw(Int_t run){
 
 
     c1->cd(1);
-    T->Draw(Form("%s>>sh_t1",dradc.Data()),trigger1  + total,"colz");
+    T->Draw(Form("%s>>sh_t1",dradc.Data()), datacurrentcut + trigger1  + total,"colz");
     c1->cd(2);
-    T->Draw(Form("%s>>sh_t2",dradc.Data()),trigger  + total,"colz" );
+    T->Draw(Form("%s>>sh_t2",dradc.Data()),datacurrentcut +  trigger  + total,"colz" );
     c2->cd(1);
     c2->cd(1)->SetLogy();
-    T->Draw(Form("%s>>sh_t3",dr.Data()),trigger1  + total,"colz");
+    T->Draw(Form("%s>>sh_t3",dr.Data()),datacurrentcut + trigger1  + total,"colz");
     c2->cd(2);
     c2->cd(2)->SetLogy();
-    T->Draw(Form("%s>>sh_t4",dr.Data()),trigger  + total,"colz" );
+    T->Draw(Form("%s>>sh_t4",dr.Data()),datacurrentcut + trigger  + total,"colz" );
     
+    c1->SaveAs(Form("plots/sh_adc_%i",run));
+    c2->SaveAs(Form("plots/Ep_%i",run));
 
 /*
    auto legend = new TLegend(0.75,0.85,0.95,0.95);

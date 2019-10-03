@@ -49,33 +49,36 @@ void sh_eff(Int_t run){
     sh_t2->SetLineWidth(4);
     sh_t1->SetLineStyle(10);
 	//==============shenkov Efficiency ==============================//
-	TH1F *sh_hist = new TH1F("sh_hist","", 1000, 0, 2);
-	TH1F *pion_hist = new TH1F("pion_hist","", 1000, 0, 2);
+	TH1F *sh_hist = new TH1F("sh_hist","", 1000, 0., 1.5);
+	TH1F *pion_hist = new TH1F("pion_hist","", 1000, 0, 1.5);
 
 	TCut trigger = "DL.bit2>0";
     TCut trigger1 = "DL.bit1>0";
 	TCut sh_apiontest = "L.cer.asum_c>100 && L.cer.asum_c<1500 && (L.prl1.e+L.prl2.e)/(L.tr.p[0]*1000)<0.5";
+	TCut sh_ashtest = "L.cer.asum_c>5000 && L.cer.asum_c<15000 && (L.prl1.e+L.prl2.e)/(L.tr.p[0]*1000)>0.2"; 
 	TCut shtest =  dp_cut_L_loose + th_cut_L_loose + ph_cut_L_loose + trigger + track_L;
 	TCut piontest =  dp_cut_L_loose + th_cut_L_loose + ph_cut_L_loose + trigger1 + track_L;
     arm = "L";
-
+        TString dr = "(L.prl1.e+L.prl2.e)/(L.tr.p[0]*1000)";
     if(run>90000){
       trigger = "DR.bit5>0";
       trigger1 = "DR.bit4>0";
       shtest =  dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose + trigger + track_R;
       piontest =  dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose + trigger1 + track_R;
+      sh_apiontest = "R.cer.asum_c>100 && R.cer.asum_c<1500 && (R.sh.e+R.ps.e)/(R.tr.p[0]*1000)<0.5";
+      sh_ashtest = "R.cer.asum_c>4000 && R.cer.asum_c<15000 && (R.sh.e+R.ps.e)/(R.tr.p[0]*1000)>0.3";
+      dr = "(R.ps.e+R.sh.e)/(R.tr.p[0]*1000)";
       arm = "R";
     }
-	TCut sh_ashtest = Form("%s.cer.asum_c>5000 && %s.cer.asum_c<10000",arm.Data(),arm.Data());
 
-	T->Draw("(L.prl1.e+L.prl2.e)/(L.tr.p[0]*1000)>>sh_hist", datacurrentcut + shtest + sh_ashtest, "goff");
-	T->Draw("(L.prl1.e+L.prl2.e)/(L.tr.p[0]*1000)>>pion_hist", datacurrentcut + piontest + sh_apiontest && !trigger, "");
+	T->Draw(Form("%s>>sh_hist",dr.Data()), datacurrentcut + shtest + sh_ashtest, "goff");
+	T->Draw(Form("%s>>pion_hist",dr.Data()), datacurrentcut + piontest + sh_apiontest && !trigger, "goff");
 
 	Double_t cut = 0.02;
 	Int_t steps = 1.2/cut+1;
 	Double_t init = 0; 
-	TH1 *final = new TH1F("final","",steps,0, 1.2);
-	TH1 *finalpion = new TH1F("finalpion","",steps,0, 1.2);
+	TH1 *final = new TH1F("final","",steps,0., 1.5);
+	TH1 *finalpion = new TH1F("finalpion","",steps,0, 1.5);
 
 	Double_t sh1500 = 0;
    	Double_t pion1500 = 0;
@@ -140,9 +143,9 @@ void sh_eff(Int_t run){
     gPad->Update();
    	
    	ofstream outfile;
-    outfile.open ("cereff.txt",ios::in|ios::app);
+    outfile.open ("sheff.txt",ios::in|ios::app);
     outfile << setiosflags(ios::left) << setw(8) << run;
-    outfile << setiosflags(ios::left) << setw(15) << cer1500;
+    outfile << setiosflags(ios::left) << setw(15) << sh1500;
     outfile << setiosflags(ios::left) << setw(15) << pion1500;
     outfile << endl;
     outfile.close();
