@@ -86,7 +86,7 @@ const double protonmass = 0.93827231;
 Double_t g = 0.0003451;
 Double_t o = -0.0016;//0.0127
 
-const Double_t I_Cut = 1.5;
+const Double_t I_Cut = 2.;
 Int_t bins = 150;
 const Double_t vz = 0.2;
 const Double_t cm2tonb = pow(10,-33);
@@ -903,7 +903,7 @@ struct RunInformation{
 };
 
 RunInformation GetRunInformation(Int_t run, TChain *T, TChain *E, TChain *ev, Double_t I=21.5){
-if(run==891 || run ==93987) I=22.;
+//if(run==891 || run ==93987 || run ==93995) I=22.;
 if(run>932 && run<948 ) I=10.;
 
 

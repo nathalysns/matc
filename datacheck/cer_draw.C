@@ -65,8 +65,8 @@ void cer_draw(Int_t run){
   
 
 
-  T->Draw("L.cer.asum_c>>cer_t1", datacurrentcut + total + trigger1);
-  T->Draw("L.cer.asum_c>>cer_t2", datacurrentcut + total + trigger,"same");
+  T->Draw(Form("%s.cer.asum_c>>cer_t1",arm.Data()), datacurrentcut + total + trigger1);
+  T->Draw(Form("%s.cer.asum_c>>cer_t2",arm.Data()), datacurrentcut + total + trigger,"same");
     
   auto legend = new TLegend(0.75,0.85,0.95,0.95);
   legend->AddEntry(cer_t1,"Trigger 1(4)","l");
@@ -76,7 +76,7 @@ void cer_draw(Int_t run){
 
   TLatex l;
   l.SetTextSize(0.03);
-  l.DrawLatex(4000,10,Form("Run %i",run));
+  l.DrawLatex(5000,10,Form("Run %i",run));
   gPad->Update();
 
   c1->SaveAs(Form("plots/cer_draw_%i.pdf",run)); 
