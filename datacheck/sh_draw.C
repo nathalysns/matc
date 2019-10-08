@@ -57,9 +57,9 @@ void sh_draw(Int_t run){
 	  datacurrentcut  = runinformation.Current_cut;
 
     Int_t shmax = 2000;
-    if(run>90000) shmax = 3500;
-    TH2F *sh_t1 = new TH2F("sh_t1","", 500, 0,2000,500,0,shmax);
-    TH2F *sh_t2 = new TH2F("sh_t2","", 500, 0,2000,500,0,shmax);
+    if(run>90000) shmax = 3000;
+    TH2F *sh_t1 = new TH2F("sh_t1","", 500, 0,shmax,500,0,shmax);
+    TH2F *sh_t2 = new TH2F("sh_t2","", 500, 0,shmax,500,0,shmax);
 
     TH1F *sh_t3 = new TH1F("sh_t3","", 500, 0, 1.5);
     TH1F *sh_t4 = new TH1F("sh_t4","", 500, 0, 1.5);
@@ -92,8 +92,8 @@ void sh_draw(Int_t run){
     c2->cd(2)->SetLogy();
     T->Draw(Form("%s>>sh_t4",dr.Data()),datacurrentcut + trigger  + total,"colz" );
     
-    c1->SaveAs(Form("plots/sh_adc_%i",run));
-    c2->SaveAs(Form("plots/Ep_%i",run));
+    c1->SaveAs(Form("plots/sh_adc_%i.pdf",run));
+    c2->SaveAs(Form("plots/Ep_%i.pdf",run));
 
 /*
    auto legend = new TLegend(0.75,0.85,0.95,0.95);

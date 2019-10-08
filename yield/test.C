@@ -187,7 +187,7 @@ outfile << setiosflags(ios::left) << setw(20) << " Data " << endl;
 
 outfile << setiosflags(ios::left) << setw(20) <<  run;
 outfile << setiosflags(ios::left) << setw(20) << " PS " ;
-outfile << setiosflags(ios::left) << setw(20) << ps << endl;
+outfile << setiosflags(ios::left) << setw(20) << ps;
 outfile << setiosflags(ios::left) << setw(20) << " charge " ;
 outfile << setiosflags(ios::left) << setw(20) << datacharge << endl;
 
