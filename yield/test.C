@@ -169,6 +169,8 @@ data_x->SetLineWidth(3);
 data_x->SetTitle("; x_{bj};");//" /#muC ");
 data_x->Draw();
 
+c1->SaveAs(Form("plots/target_%i.pdf",run));
+c2->SaveAs(Form("plots/phys_%i.pdf",run));
 //=========Number of Events ======
 double w, T_y, electrons, ratio;
 T_y = 0;
