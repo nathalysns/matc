@@ -118,18 +118,20 @@ else ps  = GetPS(T,2);
 //===================== cuts ===============================================//
 angle = dn_dat(run,2)*pi/180;
 TCut data_cut  = acc_cut_tightL + electron_cut_L + track_L + datacurrentcut;
+TCut zcut = z_cut_L_tight;
 if(type_cuts!=1) data_cut  = acc_cut_looseL + electron_cut_L + track_L + datacurrentcut;
 if(run>90000){
+zcut = z_cut_R_tight;
 data_cut  = acc_cut_tightR + electron_cut_R + track_R + datacurrentcut;
 if(type_cuts!=1) data_cut  = acc_cut_looseR + electron_cut_R + track_R + datacurrentcut;	
 }
 
-T->Draw(Form("%s.tr.tg_ph>>data_ph", arm.Data()), data_cut, "goff");
-T->Draw(Form("%s.tr.tg_th>>data_th", arm.Data()), data_cut, "goff");
-T->Draw(Form("%s.tr.tg_dp>>data_dp", arm.Data()), data_cut, "goff");
+T->Draw(Form("%s.tr.tg_ph>>data_ph", arm.Data()), data_cut + zcut, "goff");
+T->Draw(Form("%s.tr.tg_th>>data_th", arm.Data()), data_cut + zcut, "goff");
+T->Draw(Form("%s.tr.tg_dp>>data_dp", arm.Data()), data_cut + zcut, "goff");
 T->Draw(Form("%s.tr.tg_y>>data_y", arm.Data()), data_cut, "goff");
-T->Draw(Form("EK%sxe.omega>>data_en",arm.Data()), data_cut, "goff");
-T->Draw(Form("EK%sxe.x_bj>>data_x",arm.Data()),  data_cut, "goff");
+T->Draw(Form("EK%sxe.omega>>data_en",arm.Data()), data_cut + zcut, "goff");
+T->Draw(Form("EK%sxe.x_bj>>data_x",arm.Data()),  data_cut + zcut, "goff");
 
 TCanvas *c1 = new TCanvas("c1","c1",1200,1200); 
 c1->Divide(2,2);
