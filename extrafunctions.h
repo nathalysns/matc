@@ -1,7 +1,7 @@
 #ifndef EXTRAFUNCTIONS_H
 #define EXTRAFUNCTIONS_H
 
-#include "/Users/nathalysantiesteban/Dropbox/secondpass/rootalias_spring2018.h"
+#include "rootalias_spring2018.h"
 
 vector<string> split(const string& s, const string& delim, const bool keep_empty = true) {
     vector<string> result;

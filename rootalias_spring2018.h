@@ -135,11 +135,9 @@ TCut sh_cut_Leff="L.cer.asum_c>6000";
 
 TCut track_L="L.tr.n==1";
 TCut track_L0="L.tr.n==0";
-TCut trigger_L = "(DL.evtypebits>>2)&1";
-TCut trigger3_L = "(DL.evtypebits>>3)&1";
-
-
-TCut triggereff_L = "(DL.evtypebits>>1)&1";
+TCut trigger_L = "DL.bit2>0";;
+TCut trigger3_L = "DL.bit3>0";
+TCut triggereff_L = "DL.bit1>0";
 
 TCut dp_cut_L_loose = Form("fabs(L.tr.tg_dp)<%g",tg_dp_L_loose);
 TCut th_cut_L_loose = Form("abs(L.tr.tg_th-0.002)<%g",tg_th_L_loose);
@@ -211,9 +209,10 @@ TCut cer_cut_R=Form("R.cer.asum_c>%g && R.cer.asum_c<%g",cer_min_R, cer_max_R);
 TCut cer_cut_Reff=Form("R.cer.asum_c>%g && R.cer.asum_c<%g",cer_mineff_R, cer_max_R);
 TCut track_R="R.tr.n==1";
 TCut track_R_eff="R.tr.n>0";
-TCut trigger_R = "(DR.evtypebits>>5)&1";
-TCut trigger6_R = "(DR.evtypebits>>6)&1";
-TCut trigger4_R = "(DR.evtypebits>>4)&1";
+TCut trigger4_R = "DR.bit4>0";
+TCut trigger_R = "DR.bit5>0";
+TCut trigger6_R = "DR.bit6>0";
+
 
 TCut triggereff_R = "DR.bit4>0";
 
@@ -233,6 +232,7 @@ TCut Rtotal_cut_tight = dp_cut_R_tight + th_cut_R_tight + ph_cut_R_tight  + sh_c
 
 TCut acc_cut_tightR = dp_cut_R_tight + th_cut_R_tight + ph_cut_R_tight;
 TCut acc_cut_looseR = dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose;
+TCut electron_cut_R = cer_cut_R + sh_cut_R +trigger_R;
 
 // called by sort function to do descending sort
 // bool wayToSort(int i, int j) { return i > j; }
