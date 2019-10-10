@@ -113,8 +113,8 @@ const double cer_min_L=1500;
 const double cer_max_L=30000;
 const double cer_mineff_L=1500;
 //=========Loose cuts =====================//
-const double tg_ph_L_loose=0.05;
-const double tg_th_L_loose=0.06;
+const double tg_ph_L_loose=0.04;
+const double tg_th_L_loose=0.05;
 const double tg_dp_L_loose=0.05;
 //=========Tight cuts =====================//
 /*const double tg_ph_L_tight=0.025;
@@ -190,8 +190,8 @@ const double cer_min_R=1500;
 const double cer_max_R=30000;
 const double cer_mineff_R=1000;
 //=========Loose cuts =====================//
-const double tg_ph_R_loose=0.05;
-const double tg_th_R_loose=0.06;
+const double tg_ph_R_loose=0.04;
+const double tg_th_R_loose=0.05;
 const double tg_dp_R_loose=0.05;
 //=========Tight cuts =====================//
 const double tg_ph_R_tight=0.03;

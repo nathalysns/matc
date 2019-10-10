@@ -37,7 +37,7 @@ TLegend *leg2 = new TLegend(0.7,0.65,0.95,0.99);
 
 Int_t c=1;
 
-void test( Int_t run = 3116, Int_t targ = 3, Int_t type_cuts =1)  {
+void test( Int_t run = 3116, Int_t targ = 3, Int_t type_cuts = 0)  {
 
 //=========== Data ====================================//
 TH1F *data_dpfinal;
@@ -171,8 +171,8 @@ data_x->SetLineWidth(3);
 data_x->SetTitle("; x_{bj};");//" /#muC ");
 data_x->Draw();
 
-c1->SaveAs(Form("plots/target_%i.pdf",run));
-c2->SaveAs(Form("plots/phys_%i.pdf",run));
+c1->SaveAs(Form("plotsloose/target_%i.pdf",run));
+c2->SaveAs(Form("plotsloose/phys_%i.pdf",run));
 //=========Number of Events ======
 double w, T_y, electrons, ratio;
 T_y = 0;
