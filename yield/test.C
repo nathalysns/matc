@@ -37,7 +37,7 @@ TLegend *leg2 = new TLegend(0.7,0.65,0.95,0.99);
 
 Int_t c=1;
 
-void test( Int_t run = 3116, Int_t targ = 3, Int_t type_cuts = 0)  {
+void test( Int_t run = 3116, Int_t targ = 3, Int_t type_cuts = 1)  {
 
 //=========== Data ====================================//
 TH1F *data_dpfinal;

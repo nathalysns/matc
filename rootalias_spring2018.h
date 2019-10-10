@@ -120,9 +120,9 @@ const double tg_dp_L_loose=0.05;
 /*const double tg_ph_L_tight=0.025;
 const double tg_th_L_tight=0.035;
 const double tg_dp_L_tight=0.035;*/
-const double tg_ph_L_tight=0.03;
+const double tg_ph_L_tight=0.025;
 const double tg_th_L_tight=0.035;
-const double tg_dp_L_tight=0.03;
+const double tg_dp_L_tight=0.035;
 //========= Target =====================//
 const double tg_vz_L_tight=0.08;
 const double tg_vz_L_loose=0.08;
@@ -194,9 +194,9 @@ const double tg_ph_R_loose=0.04;
 const double tg_th_R_loose=0.05;
 const double tg_dp_R_loose=0.05;
 //=========Tight cuts =====================//
-const double tg_ph_R_tight=0.03;
+const double tg_ph_R_tight=0.035;
 const double tg_th_R_tight=0.035;
-const double tg_dp_R_tight=0.03;
+const double tg_dp_R_tight=0.035;
 
 //========= Target =====================//
 const double tg_vz_R_tight=0.08;
