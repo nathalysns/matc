@@ -25,8 +25,8 @@ const double   th_min = -0.08;
 const double   th_max = 0.08;
 const double   ph_min = -0.05;
 const double   ph_max = 0.05; 
-const double   ymin   = -0.07;
-const double   ymax   = 0.07;
+const double   ymin   = -0.15;
+const double   ymax   = 0.15;
 const double   xbjmin = 0.;
 const double   xbjmax = 2.;
 const double   Emin    = 0;
@@ -199,10 +199,10 @@ outfile << setiosflags(ios::left) << setw(20) << " phi " ;
 for (Int_t j=0; j<Bin; j++){
 	w = data_ph->GetBinCenter(j);
 	ratio =  data_ph->GetBinContent(j);
-	if(ratio>0.){
+//	if(ratio>0.){
 		outfile << setiosflags(ios::left) << setw(20) << w;
 		outfile << setiosflags(ios::left) << setw(20) << ratio;
-	}	
+//	}	
 }
 outfile << endl;
 
@@ -212,10 +212,10 @@ outfile << setiosflags(ios::left) << setw(20) << " theta " ;
 for (Int_t j=0; j<Bin; j++){
 	w = data_th->GetBinCenter(j);
 	ratio =  data_th->GetBinContent(j);
-	if(ratio>0.){
+//	if(ratio>0.){
 		outfile << setiosflags(ios::left) << setw(20) << w;
 		outfile << setiosflags(ios::left) << setw(20) << ratio;
-	}	
+//	}	
 }
 outfile << endl;
 
@@ -225,10 +225,10 @@ outfile << setiosflags(ios::left) << setw(20) << " dp " ;
 for (Int_t j=0; j<Bin; j++){
 	w = data_dp->GetBinCenter(j);
 	ratio =  data_dp->GetBinContent(j);
-	if(ratio>0.){
+//	if(ratio>0.){
 		outfile << setiosflags(ios::left) << setw(20) << w;
 		outfile << setiosflags(ios::left) << setw(20) << ratio;
-	}	
+//	}	
 }
 outfile << endl;
 
@@ -238,10 +238,10 @@ outfile << setiosflags(ios::left) << setw(20) << " y " ;
 for (Int_t j=0; j<Bin; j++){
 	w = data_y->GetBinCenter(j);
 	ratio =  data_y->GetBinContent(j);
-	if(ratio>0.){
+//	if(ratio>0.){
 		outfile << setiosflags(ios::left) << setw(20) << w;
 		outfile << setiosflags(ios::left) << setw(20) << ratio;
-	}	
+//	}	
 }
 outfile << endl;
 
@@ -251,10 +251,10 @@ outfile << setiosflags(ios::left) << setw(20) << " omega " ;
 for (Int_t j=0; j<enbins; j++){
 	w = data_en->GetBinCenter(j);
 	ratio =  data_en->GetBinContent(j);
-	if(ratio>0.){
+//	if(ratio>0.){
 		outfile << setiosflags(ios::left) << setw(20) << w;
 		outfile << setiosflags(ios::left) << setw(20) << ratio;
-	}	
+//	}	
 }
 outfile << endl;
 
@@ -264,10 +264,10 @@ outfile << setiosflags(ios::left) << setw(20) << " xbj " ;
 for (Int_t j=0; j<xBin; j++){
 	w = data_x->GetBinCenter(j);
 	ratio =  data_x->GetBinContent(j);
-	if(ratio>0.){
+//	if(ratio>0.){
 		outfile << setiosflags(ios::left) << setw(20) << w;
 		outfile << setiosflags(ios::left) << setw(20) << ratio;
-	}	
+//	}	
 }
 outfile << endl;
 
