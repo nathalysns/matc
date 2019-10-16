@@ -217,12 +217,12 @@ TCut trigger6_R = "DR.bit6>0";
 TCut triggereff_R = "DR.bit4>0";
 
 TCut dp_cut_R_loose = Form("fabs(R.tr.tg_dp)<%g",tg_dp_R_loose);
-TCut th_cut_R_loose = Form("fabs(R.tr.tg_th-0.008)<%g",tg_th_R_loose);
+TCut th_cut_R_loose = Form("fabs(R.tr.tg_th)<%g",tg_th_R_loose);
 TCut ph_cut_R_loose = Form("fabs(R.tr.tg_ph)<%g",tg_ph_R_loose);
 TCut z_cut_R_loose = Form("fabs(R.tr.vz)<%g",tg_vz_R_loose);
 
 TCut dp_cut_R_tight =Form("fabs(R.tr.tg_dp)<%g",tg_dp_R_tight);
-TCut th_cut_R_tight =Form("fabs(R.tr.tg_th-0.008)<%g",tg_th_R_tight);
+TCut th_cut_R_tight =Form("fabs(R.tr.tg_th)<%g",tg_th_R_tight);
 TCut ph_cut_R_tight=Form("fabs(R.tr.tg_ph)<%g",tg_ph_R_tight);
 TCut z_cut_R_tight=Form("fabs(R.tr.vz)<%g",tg_vz_R_tight);
 
