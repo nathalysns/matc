@@ -24,7 +24,7 @@ void trigger(Int_t run){
     TCut trig1 = "DL.bit1>0";
     TCut trig2 = "DL.bit2>0";
     TCut trig3 = "DL.bit3>0";
-    TCut total =  dp_cut_L_loose + th_cut_L_loose + ph_cut_L_loose + track_L + sh_cut_L;
+    TCut total =  dp_cut_L_loose + th_cut_L_loose + ph_cut_L_loose + track_L + sh_cut_L + z_cut_L_tight;
 
 
     if(run>90000){ 
@@ -32,7 +32,7 @@ void trigger(Int_t run){
         trig1 = "DR.bit4>0";
         trig2 = "DR.bit5>0";
         trig3 = "DR.bit6>0";
-        total =  dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose + track_R + sh_cut_R;
+        total =  dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose + track_R + sh_cut_R + z_cut_R_tight;
     }
 
 

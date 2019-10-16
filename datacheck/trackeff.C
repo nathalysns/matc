@@ -28,6 +28,7 @@ void trackeff(Int_t run){
     TCut track1 = "L.tr.n==1";
     TCut track = "L.tr.n>0";
     TString arm = "L";
+    TCut zcut = z_cut_L_tight;	
 
     if(run>90000){ 
     	track0 = "R.tr.n==0";
@@ -37,7 +38,8 @@ void trackeff(Int_t run){
         shcut = Form("(R.sh.e+R.ps.e)/(%f*1000)>0.7 && (R.sh.e+R.ps.e)/(%f*1000)<1.5",p0,p0);
     	totalcut = shcut + cer_cut_R + trigger_R; 
     	arm = "R";
-	}
+	zcut = z_cut_R_tight;
+    }
 
 
     TH1F *h1 = new TH1F("h1","",500,0,2);
@@ -52,8 +54,8 @@ void trackeff(Int_t run){
     cout << "Zero track inneficiency: " << zero_track << endl;
 
     //====== Multitracks
-    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), totalcut + track1 + acc, "goff" );
-    T->Draw(Form("EK%sx.x_bj>>h2eff",arm.Data()), totalcut + acc, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), totalcut + track1 + acc + zcut, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h2eff",arm.Data()), totalcut + acc + zcut, "goff" );
     Double_t multi_track = h2->GetEntries()/h2eff->GetEntries();
 
     cout << "Multitracks: " << multi_track  << endl;
