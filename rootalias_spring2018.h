@@ -106,7 +106,7 @@ const double q=6.242e12;
 
 //-----------LHRS-----------------------------------------
 const double beta_min_L=0.6;
-const double sh_min_L=0.7;
+const double sh_min_L=0.8;
 const double sh_max_L=20;
 const double sh_mineff_L=2;
 const double cer_min_L=1500;
@@ -183,7 +183,7 @@ TCut electron_cut_Ltrack = cer_cut_L+trigger_L+sh_adc_cut_Leff;
 //--------------RHRS-------------------------------------
 
 const double beta_min_R=0.6;
-const double sh_min_R = 0.7;
+const double sh_min_R = 0.8;
 const double sh_max_R = 20;
 const double sh_mineff_R = 0.3;
 const double cer_min_R=1500;
