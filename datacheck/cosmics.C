@@ -44,4 +44,7 @@ void cosmics(Int_t run){
 	if(run<90000) T->Draw("evLeftdnew_r:evLeftLclock/103700", datacurrentcut,"*");
 	else T->Draw("evRightdnew_r:evRightLclock/103700", datacurrentcut,"*");
 
+	cout << datatime_beam << " seconds with no current" << endl;
+
+
 }
