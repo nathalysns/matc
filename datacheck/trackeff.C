@@ -43,7 +43,7 @@ void trackeff(Int_t run){
     datacurrentcut  = runinformation.Current_cut;
 
     //=================================================//
-    TCut shcut = Form("(L.prl1.e+L.prl2.e)/(%f*1000)>0.8 && (L.prl1.e+L.prl2.e)/(%f*1000)<1.5",p0,p0);
+    TCut shcut = Form("(L.prl1.e+L.prl2.e)/(%f*1000)>0.7 && (L.prl1.e+L.prl2.e)/(%f*1000)<1.5",p0,p0);
     TCut totalcut = shcut + cer_cut_L + trigger_L;
     TCut totalcut1 = shcut + cer_cut_L + trigger_L;
     TCut acc = acc_cut_looseL;
@@ -58,7 +58,7 @@ void trackeff(Int_t run){
         track1 = "R.tr.n==1";
     	track = "R.tr.n>0";
         acc = acc_cut_looseR;
-        shcut = Form("(R.sh.e+R.ps.e)/(%f*1000)>0.8 && (R.sh.e+R.ps.e)/(%f*1000)<1.5",p0,p0);
+        shcut = Form("(R.sh.e+R.ps.e)/(%f*1000)>0.7 && (R.sh.e+R.ps.e)/(%f*1000)<1.5",p0,p0);
     	totalcut = shcut + cer_cut_R + trigger_R; 
     	arm = "R";
 	zcut = z_cut_R_tight;
