@@ -3,11 +3,16 @@
 
 TString arm;
 TChain *T;
+TChain *E;
+TChain *ev;
 
 void trackeff(Int_t run){
 
 	HallA_style();
     T = LoadRun(run,"T");
+    E = LoadRun(run,"E");
+    if(run>90000) ev = LoadRun(run,"evRight");
+    else ev = LoadRun(run,"evLeft");
 
 	if (!T) exit(1);
  
