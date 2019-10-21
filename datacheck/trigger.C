@@ -3,15 +3,40 @@
 
 TString arm;
 TChain *T;
+TChain *E;
+TChain *ev;
 
 void trigger(Int_t run){
 
 	HallA_style();
     T = LoadRun(run,"T");
+    T = LoadRun(run,"T");
+    E = LoadRun(run,"E");
+    if(run>90000) ev = LoadRun(run,"evRight");
+    else ev = LoadRun(run,"evLeft");
+
 
 	if (!T) exit(1);
  
     cout << "Run number: " << run << endl;
+
+    TString target_data = "Unknown";
+
+    RunInformation  runinformation   = GetRunInformation(run, T, E, ev);
+
+    Double_t datacharge, datacurrent, datatime_beam;
+    Double_t dataLumInt, databoiling;
+    TCut datacurrentcut;
+    vector<Double_t> datacurrentvalues;
+
+    target_data = runinformation.targ;
+    datacurrentvalues = runinformation.timevalues;
+    datacurrent = runinformation.current;
+    datacharge = runinformation.charge;
+    datatime_beam = runinformation.time_beam;
+    dataLumInt = runinformation.luminosity;
+    databoiling = runinformation.boiling;
+    datacurrentcut  = runinformation.Current_cut;
 
     TH1F *hp=new TH1F("hp","",400,0,4);
     TString mom = "HacL_D1_P0rb";
@@ -46,17 +71,17 @@ void trigger(Int_t run){
     T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), total, "goff" );
     Double_t all = h1->GetEntries();
 
-    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), total + trig1 + trig2 + trig3 , "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), datacurrentcut + total + trig1 + trig2 + trig3 , "goff" );
     Double_t alltrig = h2->GetEntries();
 
-    T->Draw(Form("EK%sx.x_bj>>h3",arm.Data()), total + trig1 + !trig2 + !trig3 , "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h3",arm.Data()), datacurrentcut + total + trig1 + !trig2 + !trig3 , "goff" );
     Double_t onlytrig1 = h3->GetEntries();
 
-    T->Draw(Form("EK%sx.x_bj>>h4",arm.Data()), total + !trig1 + !trig2 + trig3 , "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h4",arm.Data()), datacurrentcut + total + !trig1 + !trig2 + trig3 , "goff" );
     Double_t onlytrig3 = h4->GetEntries();
 
     ofstream outfile;
-    outfile.open ("trigger.txt",ios::in|ios::app);
+    outfile.open ("triggertest.txt",ios::in|ios::app);
     outfile << setiosflags(ios::left) << setw(8) << run;
     outfile << setiosflags(ios::left) << setw(15) << all;
     outfile << setiosflags(ios::left) << setw(15) << alltrig;
