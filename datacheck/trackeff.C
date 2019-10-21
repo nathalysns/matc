@@ -19,6 +19,24 @@ void trackeff(Int_t run){
     T->Draw(Form("%s>>hp",mom.Data()),"","goff");
     Double_t p0 = hp->GetMean();
 
+    TString target_data = "Unknown";
+
+    RunInformation  runinformation   = GetRunInformation(run, T, E, ev);
+
+    Double_t datacharge, datacurrent, datatime_beam;
+    Double_t dataLumInt, databoiling;
+    TCut datacurrentcut;
+    vector<Double_t> datacurrentvalues;
+
+    target_data = runinformation.targ;
+    datacurrentvalues = runinformation.timevalues;
+    datacurrent = runinformation.current;
+    datacharge = runinformation.charge;
+    datatime_beam = runinformation.time_beam;
+    dataLumInt = runinformation.luminosity;
+    databoiling = runinformation.boiling;
+    datacurrentcut  = runinformation.Current_cut;
+
     //=================================================//
     TCut shcut = Form("(L.prl1.e+L.prl2.e)/(%f*1000)>0.8 && (L.prl1.e+L.prl2.e)/(%f*1000)<1.5",p0,p0);
     TCut totalcut = shcut + cer_cut_L + trigger_L;
@@ -48,20 +66,20 @@ void trackeff(Int_t run){
     TH1F *h2eff = new TH1F("h2eff","",500,0,2);
 
     //====== 0 track inneficiency
-    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), totalcut + track0, "goff" );
-    T->Draw(Form("EK%sx.x_bj>>h1eff",arm.Data()), totalcut, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), totalcut + track0 + datacurrentcut, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h1eff",arm.Data()), totalcut + datacurrentcut, "goff" );
     Double_t zero_track = h1->GetEntries()/h1eff->GetEntries();
     cout << "Zero track inneficiency: " << zero_track << endl;
 
     //====== Multitracks
-    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), totalcut + track1 + acc + zcut, "goff" );
-    T->Draw(Form("EK%sx.x_bj>>h2eff",arm.Data()), totalcut + acc + zcut, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), totalcut + track1 + acc  + datacurrentcut, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h2eff",arm.Data()), totalcut + acc  + datacurrentcut, "goff" );
     Double_t multi_track = h2->GetEntries()/h2eff->GetEntries();
 
     cout << "Multitracks: " << multi_track  << endl;
 
     ofstream outfile;
-    outfile.open ("trackingeff.txt",ios::in|ios::app);
+    outfile.open ("trackingefftest.txt",ios::in|ios::app);
     outfile << setiosflags(ios::left) << setw(8) << run;
     outfile << setiosflags(ios::left) << setw(15) << zero_track;
     outfile << setiosflags(ios::left) << setw(15) << multi_track;
