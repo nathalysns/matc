@@ -11,9 +11,6 @@ void cosmics(Int_t run){
 
 	HallA_style();
 
-    TCanvas *c1 = new TCanvas("c1","",800,600);
-    Int_t N = 101;
-
     T = LoadRun(run,"T");
 	E = LoadRun(run,"E");
 	if(run>90000) ev = LoadRun(run,"evRight");
