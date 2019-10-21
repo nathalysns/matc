@@ -36,12 +36,80 @@ void cosmics(Int_t run){
 	dataLumInt = runinformation.luminosity;
 	databoiling = runinformation.boiling;
 	datacurrentcut  = runinformation.Current_cut;
-
+/*
 	TCanvas *c1 = new TCanvas("c1","",500,500);
 	if(run<90000) T->Draw("evLeftdnew_r:evLeftLclock/103700", datacurrentcut,"*");
 	else T->Draw("evRightdnew_r:evRightLclock/103700", datacurrentcut,"*");
-
+*/
+	arm = "L";
+	TCut trig1 = "DL.bit1>0";
+	TCut trig2 = "DL.bit2>0";
+	TCut trig3 = "DL.bit3>0";
+	if(run>90000){
+	  arm = "R";
+	  trig1 = "DR.bit4>0";
+          trig2 = "DR.bit5>0";
+          trig3 = "DR.bit6>0";
+	}
 	cout << datatime_beam << " seconds with no current" << endl;
 
+	TH1F *h1 = new TH1F("h1", "", 500,-10,10);
+	TH1F *h2 = new TH1F("h2", "", 500,-10,10);
+	TH1F *h3 = new TH1F("h3", "", 500,-10,10);
+
+	T->Draw(Form("EK%sxe.x_bj>>h1",arm.Data()),datacurrentcut + trig1,"goff");
+        T->Draw(Form("EK%sxe.x_bj>>h2",arm.Data()),datacurrentcut + trig2,"goff");
+        T->Draw(Form("EK%sxe.x_bj>>h3",arm.Data()),datacurrentcut + trig3,"goff");
+
+	cout << "Trigger1(4) counts = " << h1->GetEntries() << endl; 
+	cout << "Trigger2(5) counts = " << h2->GetEntries() << endl; 
+	cout << "Trigger3(6) counts = " << h3->GetEntries() << endl; 
+
+	//========================================================================//
+	
+	TH1F *hp=new TH1F("hp","",400,0,4);
+     	TString mom = "HacL_D1_P0rb";
+    	if (run>90000 ) mom = "HacR_D1_P0rb";
+    	T->Draw(Form("%s>>hp",mom.Data()),"","goff");
+    	Double_t p0 = hp->GetMean();
+
+    	//=================================================//
+    	TCut shcut = Form("(L.prl1.e+L.prl2.e)/(%f*1000)>0.8 && (L.prl1.e+L.prl2.e)/(%f*1000)<1.5",p0,p0);
+        TCut totalcut = shcut + cer_cut_L + trigger_L;
+        TCut totalcut1 = shcut + cer_cut_L + trigger_L;
+        TCut acc = acc_cut_looseL;
+        TCut track0 = "L.tr.n==0";
+        TCut track1 = "L.tr.n==1";
+        TCut track = "L.tr.n>0";
+        TString arm = "L";
+        TCut zcut = z_cut_L_tight;
+    
+        if(run>90000){
+           track0 = "R.tr.n==0";
+           track1 = "R.tr.n==1";
+           track = "R.tr.n>0";
+           acc = acc_cut_looseR;
+           shcut = Form("(R.sh.e+R.ps.e)/(%f*1000)>0.8 && (R.sh.e+R.ps.e)/(%f*1000)<1.5",p0,p0);
+           totalcut = shcut + cer_cut_R + trigger_R;
+           arm = "R";
+           zcut = z_cut_R_tight;
+	}
+
+    	TH1F *tr1 = new TH1F("tr1","",500,0,2);
+   	TH1F *tr2 = new TH1F("tr2","",500,0,2);
+    	TH1F *treff = new TH1F("treff","",500,0,2);
+    	TH1F *treff = new TH1F("treff","",500,0,2);
+
+    	//====== 0 track inneficiency
+    	T->Draw(Form("EK%sx.x_bj>>tr1",arm.Data()), totalcut + track0, "goff" );
+        T->Draw(Form("EK%sx.x_bj>>tr1eff",arm.Data()), totalcut, "goff" );
+        cout << "Events with 0 tracks: " << tr1->GetEntries() << endl;
+        cout << "Events with Multitracks in 0 tracks: " << tr1->GetEntries() << endl;
+    
+        //====== Multitracks
+        T->Draw(Form("EK%sx.x_bj>>tr2",arm.Data()), totalcut + track1 + acc + zcut, "goff" );
+        T->Draw(Form("EK%sx.x_bj>>tr2eff",arm.Data()), totalcut + acc + zcut, "goff" );
+        cout << "Events with 1 tracks: " << tr2->GetEntries() << endl;
+        cout << "Events with Multitracks in 1 tracks: " << tr2->GetEntries() << endl;
 
 }
