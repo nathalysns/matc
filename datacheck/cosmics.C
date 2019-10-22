@@ -1,4 +1,4 @@
-#include "../rootalias_spring2018cosmics.h "
+#include "../rootalias_spring2018cosmics.h"
 #include "../HallA_style.h"
 
 TString arm;
@@ -99,8 +99,8 @@ void cosmics(Int_t run){
 
   TH1F *tr1 = new TH1F("tr1","",500,0,2);
   TH1F *tr2 = new TH1F("tr2","",500,0,2);
-  TH1F *treff = new TH1F("treff","",500,0,2);
-  TH1F *treff = new TH1F("treff","",500,0,2);
+  TH1F *tr1eff = new TH1F("tr1eff","",500,0,2);
+  TH1F *tr2eff = new TH1F("tr2eff","",500,0,2);
 
     //====== 0 track inneficiency
   T->Draw(Form("EK%sx.x_bj>>tr1",arm.Data()), datacurrentcut + totalcut + track0, "goff" );
