@@ -50,14 +50,15 @@ void trigger(Int_t run){
     TCut trig2 = "DL.bit2>0";
     TCut trig3 = "DL.bit3>0";
     TCut total =  dp_cut_L_loose + th_cut_L_loose + ph_cut_L_loose + track_L + sh_cut_L;
-    TCut beta = "L.tr.beta>0.7 && L.tr.beta>1.5";
+    TCut beta = "L.tr.beta>0.7 && L.tr.beta<1.5";
+
     if(run>90000){ 
         arm = "R";
         trig1 = "DR.bit4>0";
         trig2 = "DR.bit5>0";
         trig3 = "DR.bit6>0";
         total =  dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose + track_R + sh_cut_R;
-        beta = "R.tr.beta>0.7 && R.tr.beta>1.5";
+        beta = "R.tr.beta>0.7 && R.tr.beta<1.5";
     }
 
 

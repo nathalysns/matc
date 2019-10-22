@@ -52,7 +52,7 @@ void trackeff(Int_t run){
     TCut track = "L.tr.n>0";
     TString arm = "L";
     TCut zcut = z_cut_L_tight;	
-    TCut beta = "L.tr.beta>0.7 && L.tr.beta>1.5";
+    TCut beta = "L.tr.beta>0.7 && L.tr.beta<1.5";
 
     if(run>90000){ 
     	track0 = "R.tr.n==0";
@@ -63,7 +63,7 @@ void trackeff(Int_t run){
     	totalcut = shcut + cer_cut_R + trigger_R; 
     	arm = "R";
 	   zcut = z_cut_R_tight;
-       beta = "R.tr.beta>0.7 && R.tr.beta>1.5";
+       beta = "R.tr.beta>0.7 && R.tr.beta<1.5";
     }
 
 
