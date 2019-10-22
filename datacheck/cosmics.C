@@ -119,20 +119,20 @@ void cosmics(Int_t run){
   TH1F *g3 = new TH1F("g3","",500,0,2);
   TH1F *g4 = new TH1F("g4","",500,0,2);
 
-    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), totaltrig, "goff" );
-    Double_t all = h1->GetEntries();
+    T->Draw(Form("EK%sx.x_bj>>g1",arm.Data()), totalrtig, "goff" );
+    Double_t all = g1->GetEntries();
     cout << "All trigger = " << all << endl;
 
-    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), datacurrentcut + totalrtig + trig1 + trig2 + trig3 , "goff" );
-    Double_t alltrig = h2->GetEntries();
+    T->Draw(Form("EK%sx.x_bj>>g2",arm.Data()), datacurrentcut + totalrtig + trig1 + trig2 + trig3 , "goff" );
+    Double_t alltrig = g2->GetEntries();
     cout << "Trigger 2 = " << alltrig << endl;
 
-    T->Draw(Form("EK%sx.x_bj>>h3",arm.Data()), datacurrentcut + totalrtig + trig1 + !trig2 + !trig3 , "goff" );
-    Double_t onlytrig1 = h3->GetEntries();
+    T->Draw(Form("EK%sx.x_bj>>g3",arm.Data()), datacurrentcut + totalrtig + trig1 + !trig2 + !trig3 , "goff" );
+    Double_t onlytrig1 = g3->GetEntries();
     cout << "Only Trigger 1 = " << onlytrig1 << endl;
 
-    T->Draw(Form("EK%sx.x_bj>>h4",arm.Data()), datacurrentcut + totalrtig + !trig1 + !trig2 + trig3 , "goff" );
-    Double_t onlytrig3 = h4->GetEntries();
+    T->Draw(Form("EK%sx.x_bj>>g4",arm.Data()), datacurrentcut + totalrtig + !trig1 + !trig2 + trig3 , "goff" );
+    Double_t onlytrig3 = g4->GetEntries();
     cout << "Only Trigger 3 = " << onlytrig3 << endl;
 
     ofstream outfile;
