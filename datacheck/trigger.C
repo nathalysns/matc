@@ -50,13 +50,14 @@ void trigger(Int_t run){
     TCut trig2 = "DL.bit2>0";
     TCut trig3 = "DL.bit3>0";
     TCut total =  dp_cut_L_loose + th_cut_L_loose + ph_cut_L_loose + track_L + sh_cut_L;
-    
+    TCut beta = "L.tr.beta>0.7 && L.tr.beta>1.5";
     if(run>90000){ 
         arm = "R";
         trig1 = "DR.bit4>0";
         trig2 = "DR.bit5>0";
         trig3 = "DR.bit6>0";
         total =  dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose + track_R + sh_cut_R;
+        beta = "R.tr.beta>0.7 && R.tr.beta>1.5";
     }
 
 
@@ -65,16 +66,16 @@ void trigger(Int_t run){
     TH1F *h3 = new TH1F("h3","",500,0,2);
     TH1F *h4 = new TH1F("h4","",500,0,2);
 
-    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), datacurrentcut + total, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), datacurrentcut + total + beta, "goff" );
     Double_t all = h1->GetEntries();
 
-    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), datacurrentcut + total + trig1 + trig2 + trig3 , "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), datacurrentcut + total + trig1 + trig2 + trig3 + beta, "goff" );
     Double_t alltrig = h2->GetEntries();
 
-    T->Draw(Form("EK%sx.x_bj>>h3",arm.Data()), datacurrentcut + total + trig1 + !trig2 + !trig3 , "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h3",arm.Data()), datacurrentcut + total + trig1 + !trig2 + !trig3 + beta, "goff" );
     Double_t onlytrig1 = h3->GetEntries();
 
-    T->Draw(Form("EK%sx.x_bj>>h4",arm.Data()), datacurrentcut + total + !trig1 + !trig2 + trig3 , "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h4",arm.Data()), datacurrentcut + total + !trig1 + !trig2 + trig3 + beta, "goff" );
     Double_t onlytrig3 = h4->GetEntries();
 
     ofstream outfile;
