@@ -73,8 +73,8 @@ void trackeff(Int_t run){
     TH1F *h2eff = new TH1F("h2eff","",500,0,2);
 
     //====== 0 track inneficiency
-    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), totalcut + track0 + datacurrentcut + beta, "goff" );
-    T->Draw(Form("EK%sx.x_bj>>h1eff",arm.Data()), totalcut + datacurrentcut + beta, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), totalcut + track0 + datacurrentcut, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h1eff",arm.Data()), totalcut + datacurrentcut, "goff" );
     Double_t zero_track = h1->GetEntries()/h1eff->GetEntries();
     cout << "Zero track inneficiency: " << zero_track << endl;
 
