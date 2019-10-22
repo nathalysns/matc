@@ -1,4 +1,4 @@
-#include "../rootalias_spring2018.h "
+#include "../rootalias_spring2018cosmics.h "
 #include "../HallA_style.h"
 
 TString arm;
@@ -150,7 +150,7 @@ void cosmics(Int_t run){
     outfile << setiosflags(ios::left) << setw(15) << alltrig;
     outfile << setiosflags(ios::left) << setw(15) << onlytrig1;
     outfile << setiosflags(ios::left) << setw(15) << onlytrig3;
-    
+
     outfile << endl;
     outfile.close();
 
