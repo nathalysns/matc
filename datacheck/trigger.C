@@ -65,7 +65,7 @@ void trigger(Int_t run){
     TH1F *h3 = new TH1F("h3","",500,0,2);
     TH1F *h4 = new TH1F("h4","",500,0,2);
 
-    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), total, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), datacurrentcut + total, "goff" );
     Double_t all = h1->GetEntries();
 
     T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), datacurrentcut + total + trig1 + trig2 + trig3 , "goff" );

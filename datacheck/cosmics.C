@@ -119,7 +119,7 @@ void cosmics(Int_t run){
   TH1F *g3 = new TH1F("g3","",500,0,2);
   TH1F *g4 = new TH1F("g4","",500,0,2);
 
-    T->Draw(Form("EK%sx.x_bj>>g1",arm.Data()), totalrtig, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>g1",arm.Data()), datacurrentcut + totalrtig, "goff" );
     Double_t all = g1->GetEntries();
     cout << "All trigger = " << all << endl;
 
