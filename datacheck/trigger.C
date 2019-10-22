@@ -76,7 +76,9 @@ void trigger(Int_t run){
         else if(run>93044 && run <93092){a1=850; a2=100; c1=1200; c2=1550;} //R42-PK
         else if(run>93125 && run <93149){a1=850; a2=100; c1=1200; c2=1550;} //R42-LS
         else {a1=3000; a2=0; c1=1000; c2=4000;}
+        shtest = Form(sht1,m,p0,a1,m,p0,a2,p0,c1,p0,c2);
         shtest = Form(sht1,m,a1,m,a2,c1,c2);
+
     }
 
 
@@ -107,6 +109,8 @@ void trigger(Int_t run){
     outfile << endl;
     outfile.close();
     
+    TCanvas *c1 = new TCanvas("c1","",500,500);
+     T->Draw("(R.sh.e+R.ps.e):(R.tr.p[0]*1000)>>hist1(500,1000,4000,500,1000,4000)",shtest,"colz");
 
 
 }
