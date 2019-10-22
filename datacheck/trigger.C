@@ -56,7 +56,7 @@ void trigger(Int_t run){
         trig1 = "DR.bit4>0";
         trig2 = "DR.bit5>0";
         trig3 = "DR.bit6>0";
-        total =  dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose + track_R + sh_cut_L;
+        total =  dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose + track_R + sh_cut_R;
     }
 
 
