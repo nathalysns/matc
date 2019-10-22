@@ -106,13 +106,13 @@ void cosmics(Int_t run){
   T->Draw(Form("EK%sx.x_bj>>tr1",arm.Data()), datacurrentcut + totalcut + track0, "goff" );
   T->Draw(Form("EK%sx.x_bj>>tr1eff",arm.Data()), datacurrentcut + totalcut, "goff" );
   cout << "Events with 0 tracks: " << tr1->GetEntries() << endl;
-  cout << "Events with Multitracks in 0 tracks: " << tr1->GetEntries() << endl;
+  cout << "Events with Multitracks in 0 tracks: " << tr1eff->GetEntries() << endl;
     
   //====== Multitracks
   T->Draw(Form("EK%sx.x_bj>>tr2",arm.Data()), datacurrentcut + totalcut + track1 + acc , "goff" );
   T->Draw(Form("EK%sx.x_bj>>tr2eff",arm.Data()), datacurrentcut + totalcut + acc, "goff" );
   cout << "Events with 1 tracks: " << tr2->GetEntries() << endl;
-  cout << "Events with Multitracks in 1 tracks: " << tr2->GetEntries() << endl;
+  cout << "Events with Multitracks in 1 tracks: " << tr2eff->GetEntries() << endl;
 
   TH1F *g1 = new TH1F("g1","",500,0,2);
   TH1F *g2 = new TH1F("g2","",500,0,2);
@@ -134,5 +134,25 @@ void cosmics(Int_t run){
     T->Draw(Form("EK%sx.x_bj>>h4",arm.Data()), datacurrentcut + totalrtig + !trig1 + !trig2 + trig3 , "goff" );
     Double_t onlytrig3 = h4->GetEntries();
     cout << "Only Trigger 3 = " onlytrig3 << endl;
+
+    ofstream outfile;
+    outfile.open ("cosmics.txt",ios::in|ios::app);
+    outfile << setiosflags(ios::left) << setw(8) << run;
+    outfile << setiosflags(ios::left) << setw(15) << datatime_beam;
+    outfile << setiosflags(ios::left) << setw(15) << h1->GetEntries();
+    outfile << setiosflags(ios::left) << setw(15) << h2->GetEntries();
+    outfile << setiosflags(ios::left) << setw(15) << h3->GetEntries();
+    outfile << setiosflags(ios::left) << setw(15) << tr1->GetEntries();
+    outfile << setiosflags(ios::left) << setw(15) << tr1eff->GetEntries();
+    outfile << setiosflags(ios::left) << setw(15) << tr2->GetEntries();
+    outfile << setiosflags(ios::left) << setw(15) << tr2eff->GetEntries();
+    outfile << setiosflags(ios::left) << setw(15) << all;
+    outfile << setiosflags(ios::left) << setw(15) << alltrig;
+    outfile << setiosflags(ios::left) << setw(15) << onlytrig1;
+    outfile << setiosflags(ios::left) << setw(15) << onlytrig3;
+    
+    outfile << endl;
+    outfile.close();
+
 
 }
