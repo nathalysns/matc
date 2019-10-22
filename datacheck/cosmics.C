@@ -83,6 +83,7 @@ void cosmics(Int_t run){
   TCut track = "L.tr.n>0";
   TString arm = "L";
   TCut zcut = z_cut_L_tight;
+  TCut totalrtig =  dp_cut_L_loose + th_cut_L_loose + ph_cut_L_loose + track_L + sh_cut_L;
     
   if(run>90000){
     track0 = "R.tr.n==0";
@@ -93,6 +94,7 @@ void cosmics(Int_t run){
     totalcut = shcut + cer_cut_R + trigger_R;
     arm = "R";
     zcut = z_cut_R_tight;
+    totalrtig = dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose + track_R + sh_cut_R;
 	}
 
   TH1F *tr1 = new TH1F("tr1","",500,0,2);
@@ -112,6 +114,25 @@ void cosmics(Int_t run){
   cout << "Events with 1 tracks: " << tr2->GetEntries() << endl;
   cout << "Events with Multitracks in 1 tracks: " << tr2->GetEntries() << endl;
 
+  TH1F *g1 = new TH1F("g1","",500,0,2);
+  TH1F *g2 = new TH1F("g2","",500,0,2);
+  TH1F *g3 = new TH1F("g3","",500,0,2);
+  TH1F *g4 = new TH1F("g4","",500,0,2);
 
+    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), total, "goff" );
+    Double_t all = h1->GetEntries();
+    cout << "All trigger = " all << endl;
+
+    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), datacurrentcut + totalrtig + trig1 + trig2 + trig3 , "goff" );
+    Double_t alltrig = h2->GetEntries();
+    cout << "Trigger 2 = " alltrig << endl;
+
+    T->Draw(Form("EK%sx.x_bj>>h3",arm.Data()), datacurrentcut + totalrtig + trig1 + !trig2 + !trig3 , "goff" );
+    Double_t onlytrig1 = h3->GetEntries();
+    cout << "Only Trigger 1 = " onlytrig1 << endl;
+
+    T->Draw(Form("EK%sx.x_bj>>h4",arm.Data()), datacurrentcut + totalrtig + !trig1 + !trig2 + trig3 , "goff" );
+    Double_t onlytrig3 = h4->GetEntries();
+    cout << "Only Trigger 3 = " onlytrig3 << endl;
 
 }
