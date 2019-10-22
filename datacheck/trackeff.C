@@ -53,8 +53,8 @@ void trackeff(Int_t run){
     TString arm = "L";
     TCut zcut = z_cut_L_tight;	
     TCut beta = "L.tr.beta>0.7 && L.tr.beta<1.5";
-    TString shtest = "";
-    TCut sht1 = "";
+    TCut shtest = "";
+    TString sht1 = "";
     Double_t  m, a1, a2, c1, c2; 
     m = a1 = a2 = c1 = c2 = 0; 
     
@@ -70,7 +70,7 @@ void trackeff(Int_t run){
     	arm = "R";
 	    zcut = z_cut_R_tight;
         beta = "R.tr.beta>0.7 && R.tr.beta<1.5";
-        shtest = "(R.sh.e+R.ps.e)>((%f*(R.tr.p[0]*1000))-%f) && (R.sh.e+R.ps.e)<((%f*(R.tr.p[0]*1000))-%f) && (R.tr.p[0]*1000)>%f &&(R.tr.p[0]*1000)<%f ";
+        sht1 = "(R.sh.e+R.ps.e)>((%f*(R.tr.p[0]*1000))-%f) && (R.sh.e+R.ps.e)<((%f*(R.tr.p[0]*1000))-%f) && (R.tr.p[0]*1000)>%f &&(R.tr.p[0]*1000)<%f ";
         //
         if(run>94024 && run <94067){a1=1500; a2=900; c1=2810; c2=3120;} //R28-HS
         else if(run>93986 && run <94015){a1=1500; a2=800; c1=2650; c2=3120;} //R28-PK
@@ -83,7 +83,7 @@ void trackeff(Int_t run){
         else if(run>93044 && run <93092){a1=850; a2=100; c1=1200; c2=1550;} //R42-PK
         else if(run>93125 && run <93149){a1=850; a2=100; c1=1200; c2=1550;} //R42-LS
         else {a1=3000; a2=0; c1=1000; c2=4000;}
-        sht1 = Form(shtest,m,a1,m,a2,c1,c2);
+        shtest = Form(sht1,m,a1,m,a2,c1,c2);
 
     }
 
@@ -94,8 +94,8 @@ void trackeff(Int_t run){
     TH1F *h2eff = new TH1F("h2eff","",500,0,2);
 
     //====== 0 track inneficiency
-    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), totalcut + track0 + datacurrentcut, "goff" );
-    T->Draw(Form("EK%sx.x_bj>>h1eff",arm.Data()), totalcut + datacurrentcut, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), totalcut + track0 + datacurrentcut + shtest, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h1eff",arm.Data()), totalcut + datacurrentcut + shtest, "goff" );
     Double_t zero_track = h1->GetEntries()/h1eff->GetEntries();
     cout << "Zero track inneficiency: " << zero_track << endl;
 
