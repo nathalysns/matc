@@ -85,16 +85,16 @@ void trigger(Int_t run){
     TH1F *h3 = new TH1F("h3","",500,0,2);
     TH1F *h4 = new TH1F("h4","",500,0,2);
 
-    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), datacurrentcut + total + beta + shtest, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), datacurrentcut + total + shtest, "goff" );
     Double_t all = h1->GetEntries();
 
-    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), datacurrentcut + total + trig1 + trig2 + trig3 + beta + shtest, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), datacurrentcut + total + trig1 + trig2 + trig3 + shtest, "goff" );
     Double_t alltrig = h2->GetEntries();
 
-    T->Draw(Form("EK%sx.x_bj>>h3",arm.Data()), datacurrentcut + total + trig1 + !trig2 + !trig3 + beta + shtest, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h3",arm.Data()), datacurrentcut + total + trig1 + !trig2 + !trig3 + shtest, "goff" );
     Double_t onlytrig1 = h3->GetEntries();
 
-    T->Draw(Form("EK%sx.x_bj>>h4",arm.Data()), datacurrentcut + total + !trig1 + !trig2 + trig3 + beta + shtest, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h4",arm.Data()), datacurrentcut + total + !trig1 + !trig2 + trig3 + shtest, "goff" );
     Double_t onlytrig3 = h4->GetEntries();
 
     ofstream outfile;

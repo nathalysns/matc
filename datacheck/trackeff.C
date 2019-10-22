@@ -44,8 +44,8 @@ void trackeff(Int_t run){
 
     //=================================================//
     TCut shcut = Form("(L.prl1.e+L.prl2.e)/(%f*1000)>0.7 && (L.prl1.e+L.prl2.e)/(%f*1000)<1.5",p0,p0);
-    TCut totalcut = shcut + cer_cut_L + trigger_L;
-    TCut totalcut1 = shcut + cer_cut_L + trigger_L;
+    TCut totalcut =  cer_cut_L + trigger_L;
+    TCut totalcut1 =  cer_cut_L + trigger_L;
     TCut acc = acc_cut_looseL;
     TCut track0 = "L.tr.n==0";
     TCut track1 = "L.tr.n==1";
@@ -66,11 +66,11 @@ void trackeff(Int_t run){
     	track = "R.tr.n>0";
         acc = acc_cut_looseR;
         shcut = Form("(R.sh.e+R.ps.e)/(%f*1000)>0.7 && (R.sh.e+R.ps.e)/(%f*1000)<1.5",p0,p0);
-    	totalcut = shcut + cer_cut_R + trigger_R; 
+    	totalcut = cer_cut_R + trigger_R; 
     	arm = "R";
 	    zcut = z_cut_R_tight;
         beta = "R.tr.beta>0.7 && R.tr.beta<1.5";
-        sht1 = "(R.sh.e+R.ps.e)>((%f*(R.tr.p[0]*1000))-%f) && (R.sh.e+R.ps.e)<((%f*(R.tr.p[0]*1000))-%f) && (R.tr.p[0]*1000)>%f &&(R.tr.p[0]*1000)<%f ";
+        sht1 = "(R.sh.e+R.ps.e)>((%f*(%f*1000))-%f) && (R.sh.e+R.ps.e)<((%f*(%f*1000))-%f) && (%f*1000)>%f &&(%f*1000)<%f ";
         //
         if(run>94024 && run <94067){a1=1500; a2=900; c1=2810; c2=3120;} //R28-HS
         else if(run>93986 && run <94015){a1=1500; a2=800; c1=2650; c2=3120;} //R28-PK
@@ -83,7 +83,7 @@ void trackeff(Int_t run){
         else if(run>93044 && run <93092){a1=850; a2=100; c1=1200; c2=1550;} //R42-PK
         else if(run>93125 && run <93149){a1=850; a2=100; c1=1200; c2=1550;} //R42-LS
         else {a1=3000; a2=0; c1=1000; c2=4000;}
-        shtest = Form(sht1,m,a1,m,a2,c1,c2);
+        shtest = Form(sht1,m,p0,a1,m,p0,a2,p0,c1,p0,c2);
 
     }
 
@@ -100,7 +100,7 @@ void trackeff(Int_t run){
     cout << "Zero track inneficiency: " << zero_track << endl;
 
     //====== Multitracks
-    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), totalcut + track1 + acc  + datacurrentcut + beta + shtest, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), totalcut + track1 + acc  + datacurrentcut + shtest, "goff" );
     T->Draw(Form("EK%sx.x_bj>>h2eff",arm.Data()), totalcut + acc  + datacurrentcut + beta + shtest, "goff" );
     Double_t multi_track = h2->GetEntries()/h2eff->GetEntries();
 
