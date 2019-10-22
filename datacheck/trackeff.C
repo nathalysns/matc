@@ -54,7 +54,7 @@ void trackeff(Int_t run){
     TCut zcut = z_cut_L_tight;	
     TCut beta = "L.tr.beta>0.7 && L.tr.beta<1.5";
     TString shtest = "";
-    TString sht1 = "";
+    TCut sht1 = "";
     Double_t  m, a1, a2, c1, c2; 
     m = a1 = a2 = c1 = c2 = 0; 
     
