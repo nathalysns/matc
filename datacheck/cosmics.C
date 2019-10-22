@@ -137,19 +137,19 @@ void cosmics(Int_t run){
 
     ofstream outfile;
     outfile.open ("cosmics.txt",ios::in|ios::app);
-    outfile << setiosflags(ios::left) << setw(8) << run<< ",";
-    outfile << setiosflags(ios::left) << setw(15) << datatime_beam<< ",";
-    outfile << setiosflags(ios::left) << setw(15) << h1->GetEntries()<< ",";
-    outfile << setiosflags(ios::left) << setw(15) << h2->GetEntries()<< ",";
-    outfile << setiosflags(ios::left) << setw(15) << h3->GetEntries()<< ",";
-    outfile << setiosflags(ios::left) << setw(15) << tr1->GetEntries()<< ",";
-    outfile << setiosflags(ios::left) << setw(15) << tr1eff->GetEntries()<< ",";
-    outfile << setiosflags(ios::left) << setw(15) << tr2->GetEntries()<< ",";
-    outfile << setiosflags(ios::left) << setw(15) << tr2eff->GetEntries()<< ",";
-    outfile << setiosflags(ios::left) << setw(15) << all<< ",";
-    outfile << setiosflags(ios::left) << setw(15) << alltrig<< ",";
-    outfile << setiosflags(ios::left) << setw(15) << onlytrig1<< ",";
-    outfile << setiosflags(ios::left) << setw(15) << onlytrig3<< ",";
+    outfile << setiosflags(ios::left) << setw(8) << run;
+    outfile << setiosflags(ios::left) << setw(15) << datatime_beam;
+    outfile << setiosflags(ios::left) << setw(15) << h1->GetEntries();
+    outfile << setiosflags(ios::left) << setw(15) << h2->GetEntries();
+    outfile << setiosflags(ios::left) << setw(15) << h3->GetEntries();
+    outfile << setiosflags(ios::left) << setw(15) << tr1->GetEntries();
+    outfile << setiosflags(ios::left) << setw(15) << tr1eff->GetEntries();
+    outfile << setiosflags(ios::left) << setw(15) << tr2->GetEntries();
+    outfile << setiosflags(ios::left) << setw(15) << tr2eff->GetEntries();
+    outfile << setiosflags(ios::left) << setw(15) << all;
+    outfile << setiosflags(ios::left) << setw(15) << alltrig;
+    outfile << setiosflags(ios::left) << setw(15) << onlytrig1;
+    outfile << setiosflags(ios::left) << setw(15) << onlytrig3;
 
     outfile << endl;
     outfile.close();
