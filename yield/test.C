@@ -89,6 +89,8 @@ else ev = LoadRun(run,"evLeft");
 if (!T) exit(1);
 
 
+
+
 RunInformation  runinformation   = GetRunInformation(run, T, E, ev);
 Double_t datacharge, datacurrent, datatime_beam;
 Double_t dataLumInt, databoiling;
@@ -116,14 +118,38 @@ if(run>90000) ps  = GetPS(T,5);
 else ps  = GetPS(T,2);
 
 //===================== cuts ===============================================//
+
+TCut beta = "L.tr.beta>0.7 && L.tr.beta<1.5";
+TCut shtest = "";
+TString sht1 = "";
+Double_t  m, a1, a2, c1, c2; 
+m = a1 = a2 = c1 = c2 = 0; 
 angle = dn_dat(run,2)*pi/180;
 TCut data_cut  = acc_cut_tightL + electron_cut_L + track_L + datacurrentcut;
 TCut zcut = z_cut_L_tight;
+
 if(type_cuts!=1) data_cut  = acc_cut_looseL + electron_cut_L + track_L + datacurrentcut;
 if(run>90000){
+ beta = "R.tr.beta>0.7 && R.tr.beta<1.5";
+ sht1 = "(R.sh.e+R.ps.e)>((%f*(R.tr.p[0]*1000))-%f) && (R.sh.e+R.ps.e)<((%f*(R.tr.p[0]*1000))-%f) && (R.tr.p[0]*1000)>%f &&(R.tr.p[0]*1000)<%f ";
+ //
+ m=1.41;
+ if(run>94024 && run <94067){a1=1500; a2=900; c1=2810; c2=3120;} //R28-HS
+ else if(run>93986 && run <94015){a1=1500; a2=800; c1=2650; c2=3120;} //R28-PK
+ else if(run>93741 && run <93774){a1=1500; a2=800; c1=2800; c2=3400;} //R26-HS
+ else if(run>93708 && run <93739){a1=1500; a2=800; c1=2750; c2=3400;} //R26-PK
+ else if(run>93774 && run <93786){a1=1500; a2=800; c1=2700; c2=3200;} //R26-LS
+ else if(run>93591 && run <93644){a1=1600; a2=800; c1=2900; c2=3400;} //R24-PK
+ else if(run>93648 && run <93699){a1=1700; a2=800; c1=2700; c2=3300;} //R24-LS
+ else if(run>93092 && run <93124){a1=850; a2=250; c1=1320; c2=1550;} //R42-HS
+ else if(run>93044 && run <93092){a1=850; a2=100; c1=1200; c2=1550;} //R42-PK
+ else if(run>93125 && run <93149){a1=850; a2=100; c1=1200; c2=1550;} //R42-LS
+ else {a1=3000; a2=0; c1=1000; c2=4000;}        
+ shtest = Form(sht1,m,a1,m,a2,c1,c2);
+
 zcut = z_cut_R_tight;
-data_cut  = acc_cut_tightR + electron_cut_R + track_R + datacurrentcut;
-if(type_cuts!=1) data_cut  = acc_cut_looseR + electron_cut_R + track_R + datacurrentcut;	
+data_cut  = acc_cut_tightR + electron_cut_R + track_R + datacurrentcut + shtest;
+if(type_cuts!=1) data_cut  = acc_cut_looseR + electron_cut_R + track_R + datacurrentcut + shtest;	
 }
 
 T->Draw(Form("%s.tr.tg_ph>>data_ph", arm.Data()), data_cut + zcut, "goff");
