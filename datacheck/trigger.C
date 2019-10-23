@@ -38,7 +38,7 @@ void trigger(Int_t run){
     databoiling = runinformation.boiling;
     datacurrentcut  = runinformation.Current_cut;
 
-    TH1F *hp=new TH1F("hp","",400,0,4);
+    TH1F *hp = new TH1F("hp","",400,0,4);
     TString mom = "HacL_D1_P0rb";
     if (run>90000 ) mom = "HacR_D1_P0rb";
     T->Draw(Form("%s>>hp",mom.Data()),"","goff");
@@ -57,6 +57,7 @@ void trigger(Int_t run){
     m = a1 = a2 = c1 = c2 = 0; 
 
     if(run>90000){ 
+	m=1.41; 
         arm = "R";
         trig1 = "DR.bit4>0";
         trig2 = "DR.bit5>0";
@@ -75,28 +76,27 @@ void trigger(Int_t run){
         else if(run>93092 && run <93124){a1=850; a2=250; c1=1320; c2=1550;} //R42-HS
         else if(run>93044 && run <93092){a1=850; a2=100; c1=1200; c2=1550;} //R42-PK
         else if(run>93125 && run <93149){a1=850; a2=100; c1=1200; c2=1550;} //R42-LS
-        else {a1=3000; a2=0; c1=1000; c2=4000;}
-        shtest = Form(sht1,m,p0,a1,m,p0,a2,p0,c1,p0,c2);
+	else {a1=3000; a2=0; c1=1000; c2=4000;}        
         shtest = Form(sht1,m,a1,m,a2,c1,c2);
 
     }
 
-
+   cout << shtest << endl;
     TH1F *h1 = new TH1F("h1","",500,0,2);
     TH1F *h2 = new TH1F("h2","",500,0,2);
     TH1F *h3 = new TH1F("h3","",500,0,2);
     TH1F *h4 = new TH1F("h4","",500,0,2);
 
-    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), datacurrentcut + total + shtest, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), datacurrentcut + total + shtest + beta, "goff" );
     Double_t all = h1->GetEntries();
 
-    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), datacurrentcut + total + trig1 + trig2 + trig3 + shtest, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), datacurrentcut + total + trig1 + trig2 + trig3 + shtest + beta, "goff" );
     Double_t alltrig = h2->GetEntries();
 
-    T->Draw(Form("EK%sx.x_bj>>h3",arm.Data()), datacurrentcut + total + trig1 + !trig2 + !trig3 + shtest, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h3",arm.Data()), datacurrentcut + total + trig1 + !trig2 + !trig3 + shtest + beta, "goff" );
     Double_t onlytrig1 = h3->GetEntries();
 
-    T->Draw(Form("EK%sx.x_bj>>h4",arm.Data()), datacurrentcut + total + !trig1 + !trig2 + trig3 + shtest, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h4",arm.Data()), datacurrentcut + total + !trig1 + !trig2 + trig3 + shtest + beta, "goff" );
     Double_t onlytrig3 = h4->GetEntries();
 
     ofstream outfile;
@@ -109,7 +109,7 @@ void trigger(Int_t run){
     outfile << endl;
     outfile.close();
     
-    TCanvas *c1 = new TCanvas("c1","",500,500);
+    TCanvas *canvas1 = new TCanvas("canvas1","",500,500);
      T->Draw("(R.sh.e+R.ps.e):(R.tr.p[0]*1000)>>hist1(500,1000,4000,500,1000,4000)",shtest,"colz");
 
 

@@ -101,7 +101,7 @@ void trackeff(Int_t run){
 
     //====== Multitracks
     T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), totalcut + track1 + acc  + datacurrentcut + shtest, "goff" );
-    T->Draw(Form("EK%sx.x_bj>>h2eff",arm.Data()), totalcut + acc  + datacurrentcut + beta + shtest, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h2eff",arm.Data()), totalcut + acc  + datacurrentcut + shtest, "goff" );
     Double_t multi_track = h2->GetEntries()/h2eff->GetEntries();
 
     cout << "Multitracks: " << multi_track  << endl;
