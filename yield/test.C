@@ -207,7 +207,7 @@ ratio=0;
 
 
 ofstream outfile ; 
-outfile.open("test.txt",ios::out|ios::app);
+outfile.open("testt1.txt",ios::out|ios::app);
 
 outfile << setiosflags(ios::left) << setw(20) << "Run" ;
 outfile << setiosflags(ios::left) << setw(20) << run ;
