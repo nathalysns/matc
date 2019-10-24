@@ -57,15 +57,15 @@ void cer_eff(Int_t run){
 	
 	TCut trigger = "DL.bit2>0";
 	TCut trigger1 = "DL.bit1>0";
-	TCut certest =  dp_cut_L_loose + th_cut_L_loose + ph_cut_L_loose + trigger + track_L;
-	TCut piontest =  dp_cut_L_loose + th_cut_L_loose + ph_cut_L_loose + trigger1 + track_L;
+	TCut certest =  dp_cut_L_tight + th_cut_L_tight + ph_cut_L_tight + trigger + track_L;
+	TCut piontest =  dp_cut_L_tight + th_cut_L_tight + ph_cut_L_tight + trigger1 + track_L;
 	arm = "L";
 
 	if(run>90000){
 		trigger = "DR.bit5>0";
 		trigger1 = "DR.bit4>0";
-		certest =  datacurrent + dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose + trigger + track_R;
-		piontest =  datacurrent + dp_cut_R_loose + th_cut_R_loose + ph_cut_R_loose + trigger1 + track_R;
+		certest =  datacurrent + dp_cut_R_tight + th_cut_R_tight + ph_cut_R_tight + trigger + track_R;
+		piontest =  datacurrent + dp_cut_R_tight + th_cut_R_tight + ph_cut_R_tight + trigger1 + track_R;
 		arm = "R";
 		sh_acertest = "(R.ps.e+R.sh.e)/(R.tr.p[0]*1000)<1.1 && (R.ps.e+R.sh.e)/(R.tr.p[0]*1000)>0.7";
                 sh_apiontest = "(R.ps.e+R.sh.e)/(R.tr.p[0]*1000)<0.5 && (R.ps.e+R.sh.e)/(R.tr.p[0]*1000)>0.0";
@@ -136,7 +136,7 @@ void cer_eff(Int_t run){
     gPad->Update();
    
    	ofstream outfile;
-    outfile.open ("cereff.txt",ios::in|ios::app);
+    outfile.open ("cerefft1.txt",ios::in|ios::app);
     outfile << setiosflags(ios::left) << setw(8) << run;
     outfile << setiosflags(ios::left) << setw(15) << cer1500;
     outfile << setiosflags(ios::left) << setw(15) << pion1500;

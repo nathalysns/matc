@@ -46,7 +46,7 @@ void trackeff(Int_t run){
     TCut shcut = Form("(L.prl1.e+L.prl2.e)/(%f*1000)>0.7 && (L.prl1.e+L.prl2.e)/(%f*1000)<1.5",p0,p0);
     TCut totalcut =  cer_cut_L + trigger_L;
     TCut totalcut1 =  cer_cut_L + trigger_L;
-    TCut acc = acc_cut_looseL;
+    TCut acc = acc_cut_tightL;
     TCut track0 = "L.tr.n==0";
     TCut track1 = "L.tr.n==1";
     TCut track = "L.tr.n>0";
@@ -64,7 +64,7 @@ void trackeff(Int_t run){
     	track0 = "R.tr.n==0";
         track1 = "R.tr.n==1";
     	track = "R.tr.n>0";
-        acc = acc_cut_looseR;
+        acc = acc_cut_tightR;
         shcut = Form("(R.sh.e+R.ps.e)/(%f*1000)>0.7 && (R.sh.e+R.ps.e)/(%f*1000)<1.5",p0,p0);
     	totalcut = cer_cut_R + trigger_R; 
     	arm = "R";
@@ -73,15 +73,15 @@ void trackeff(Int_t run){
         sht1 = "(R.sh.e+R.ps.e)>((%f*(%f*1000))-%f) && (R.sh.e+R.ps.e)<((%f*(%f*1000))-%f) && (%f*1000)>%f &&(%f*1000)<%f ";
         //
         if(run>94024 && run <94067){a1=1500; a2=900; c1=2810; c2=3120;} //R28-HS
-        else if(run>93986 && run <94015){a1=1500; a2=800; c1=2650; c2=3120;} //R28-PK
-        else if(run>93741 && run <93774){a1=1500; a2=800; c1=2800; c2=3400;} //R26-HS
-        else if(run>93708 && run <93739){a1=1500; a2=800; c1=2750; c2=3400;} //R26-PK
-        else if(run>93774 && run <93786){a1=1500; a2=800; c1=2700; c2=3200;} //R26-LS
-        else if(run>93591 && run <93644){a1=1600; a2=800; c1=2900; c2=3400;} //R24-PK
-        else if(run>93648 && run <93699){a1=1700; a2=800; c1=2700; c2=3300;} //R24-LS
-        else if(run>93092 && run <93124){a1=850; a2=250; c1=1320; c2=1550;} //R42-HS
-        else if(run>93044 && run <93092){a1=850; a2=100; c1=1200; c2=1550;} //R42-PK
-        else if(run>93125 && run <93149){a1=850; a2=100; c1=1200; c2=1550;} //R42-LS
+        else if(run>93986 && run <94015){a1=1600; a2=700; c1=2650; c2=3120;} //R28-PK
+        else if(run>93741 && run <93774){a1=1600; a2=700; c1=2800; c2=3400;} //R26-HS
+        else if(run>93708 && run <93739){a1=1600; a2=700; c1=2750; c2=3400;} //R26-PK
+        else if(run>93774 && run <93786){a1=1600; a2=700; c1=2700; c2=3200;} //R26-LS
+        else if(run>93591 && run <93644){a1=1700; a2=700; c1=2900; c2=3400;} //R24-PK
+        else if(run>93648 && run <93699){a1=1800; a2=700; c1=2700; c2=3300;} //R24-LS
+        else if(run>93092 && run <93124){a1=950; a2=150; c1=1320; c2=1550;} //R42-HS
+        else if(run>93044 && run <93092){a1=950; a2=0; c1=1200; c2=1550;} //R42-PK
+        else if(run>93125 && run <93149){a1=950; a2=0; c1=1200; c2=1550;} //R42-LS
         else {a1=3000; a2=0; c1=1000; c2=4000;}
         shtest = Form(sht1,m,p0,a1,m,p0,a2,p0,c1,p0,c2);
 
