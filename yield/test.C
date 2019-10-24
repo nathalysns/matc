@@ -160,46 +160,46 @@ T->Draw(Form("%s.tr.tg_y>>data_y", arm.Data()), data_cut, "goff");
 T->Draw(Form("EK%sxe.omega>>data_en",arm.Data()), data_cut + zcut, "goff");
 T->Draw(Form("EK%sxe.x_bj>>data_x",arm.Data()),  data_cut + zcut, "goff");
 
-TCanvas *c1 = new TCanvas("c1","c1",1200,1200); 
-c1->Divide(2,2);
+TCanvas *canv1 = new TCanvas("canv1","canv1",1200,1200); 
+canv1->Divide(2,2);
 HallA_style();
 
-c1->cd(1);
+canv1->cd(1);
 data_ph->SetLineColor(4);
 data_ph->SetLineWidth(3);
 data_ph->SetTitle("; d#phi;");//" /#muC ");
 data_ph->Draw();
-c1->cd(2);
+canv1->cd(2);
 data_th->SetLineColor(4);
 data_th->SetLineWidth(3);
 data_th->SetTitle("; d#theta;");//" /#muC ");
 data_th->Draw();
-c1->cd(3);
+canv1->cd(3);
 data_dp->SetLineColor(4);
 data_dp->SetLineWidth(3);
 data_dp->SetTitle("; dp;");//" /#muC ");
 data_dp->Draw();
-c1->cd(4);
+canv1->cd(4);
 data_y->SetLineColor(4);
 data_y->SetLineWidth(3);
 data_y->SetTitle("; y;");//" /#muC ");
 data_y->Draw();
 
-TCanvas *c2 = new TCanvas("c2","c2",1200,1200); 
-c2->Divide(1,2);
-c2->cd(1);
+TCanvas *canv2 = new TCanvas("canv2","canv2",1200,1200); 
+canv2->Divide(1,2);
+canv2->cd(1);
 data_en->SetLineColor(4);
 data_en->SetLineWidth(3);
 data_en->SetTitle("; #omega;");//" /#muC ");
 data_en->Draw();
-c2->cd(2);
+canv2->cd(2);
 data_x->SetLineColor(4);
 data_x->SetLineWidth(3);
 data_x->SetTitle("; x_{bj};");//" /#muC ");
 data_x->Draw();
 
-c1->SaveAs(Form("plotsloose/target_%i.pdf",run));
-c2->SaveAs(Form("plotsloose/phys_%i.pdf",run));
+canv1->SaveAs(Form("plotsloose/target_%i.pdf",run));
+canv2->SaveAs(Form("plotsloose/phys_%i.pdf",run));
 //=========Number of Events ======
 double w, T_y, electrons, ratio;
 T_y = 0;
