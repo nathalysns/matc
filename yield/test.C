@@ -129,6 +129,7 @@ TCut data_cut  = acc_cut_tightL + electron_cut_L + track_L + datacurrentcut;
 TCut zcut = z_cut_L_tight;
 
 if(type_cuts!=1) data_cut  = acc_cut_looseL + electron_cut_L + track_L + datacurrentcut;
+
 if(run>90000){
  beta = "R.tr.beta>0.7 && R.tr.beta<1.5";
  sht1 = "(R.sh.e+R.ps.e)>((%f*(R.tr.p[0]*1000))-%f) && (R.sh.e+R.ps.e)<((%f*(R.tr.p[0]*1000))-%f) && (R.tr.p[0]*1000)>%f &&(R.tr.p[0]*1000)<%f ";
@@ -148,8 +149,8 @@ else {a1=3000; a2=0; c1=1000; c2=4000;}
  shtest = Form(sht1,m,a1,m,a2,c1,c2);
 
 zcut = z_cut_R_tight;
-data_cut  = acc_cut_tightR + electron_cut_R + track_R + datacurrentcut + shtest;
-if(type_cuts!=1) data_cut  = acc_cut_looseR + electron_cut_R + track_R + datacurrentcut + shtest;	
+data_cut  = acc_cut_tightR + electron_cut_R + track_R + datacurrentcut + shtest + beta;
+if(type_cuts!=1) data_cut  = acc_cut_looseR + electron_cut_R + track_R + datacurrentcut + shtest + beta;	
 }
 
 T->Draw(Form("%s.tr.tg_ph>>data_ph", arm.Data()), data_cut + zcut, "goff");
