@@ -124,7 +124,7 @@ const double tg_ph_L_tight=0.025;
 const double tg_th_L_tight=0.035;
 const double tg_dp_L_tight=0.035;
 //========= Target =====================//
-const double tg_vz_L_tight=0.08;
+const double tg_vz_L_tight=0.07;
 const double tg_vz_L_loose=0.08;
 
 TCut sh_cut_L=Form("((L.prl1.e+L.prl2.e)>L.tr.p[0]*1000*%g) && ((L.prl1.e+L.prl2.e)<L.tr.p[0]*1000*%g)",sh_min_L,sh_max_L);
