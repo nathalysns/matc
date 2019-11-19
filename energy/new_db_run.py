@@ -22,14 +22,15 @@ with open(dir2) as events:
                 data = line.split('  ')
                 #print data[1]
                 run.append(int(data[0]))
-                print(data[1])
-                if (float(data[1]) < 93150): 
+                #print(data[1])
+                if (float(data[0]) < 93150): 
                         energy.append((1.002*float(data[1]))/1000)
                 else:	
                         energy.append((1.0025*float(data[1]))/1000)
+                        print("%f  %f" %(float(data[1]),(1.0025*float(data[1]))/1000))
 #run = np.array(run)
 test = 0
-print(run)
+#print(run)
 #R = map(tuple,run)
 file=open(outdir,'w')
 with open(dir) as events:
@@ -43,6 +44,7 @@ with open(dir) as events:
                                 print('This is: ' + data[5])
                                 x = run.index(r)
                                 test = 1
+
                 if data[0] == 'ebeam' and test == 1: 		
                         file.write('ebeam = %f \n'  % energy[x])
                         test =0

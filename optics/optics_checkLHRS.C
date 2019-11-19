@@ -12,8 +12,11 @@
 #include <TTree.h>
 #include <TF1.h>
 #include <tuple>
-#include "/work/halla/triton/nathaly/matc/rootalias_spring2018.h"
-#include "/work/halla/triton/nathaly/matc/HallA_style.h"
+//#include "/work/halla/triton/nathaly/matc/rootalias_spring2018.h"
+//#include "/work/halla/triton/nathaly/matc/HallA_style.h"
+
+#include "/Users/nathaly/Dropbox/matc/optics/rootalias_spring2018.h"
+#include "/Users/nathaly/Dropbox/matc/optics/HallA_style.h"
 
 TChain *T;
 TChain *ev;

@@ -36,7 +36,7 @@ void HallA_style() {
   gStyle->SetOptDate(0);
   gStyle->SetDateY(.98);
   gStyle->SetStripDecimals(kFALSE);
-  gStyle->SetTitleSize(0.05, "xy");
+  gStyle->SetTitleSize(0.045, "xy");
   gStyle->SetTitleX(0.3f);
   gStyle->SetTitleW(0.4f);
 }

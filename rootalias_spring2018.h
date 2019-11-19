@@ -59,7 +59,7 @@ const char* PATHS[] = {
   //"/volatile/halla/triton/nathaly/Rootfiles/RHRSspring",
   "/volatile/halla/triton/nathaly",
   //"/volatile/halla/triton/nathaly", 
-  "/Volumes/MOTI/spring",
+  "/Volumes/MOTI/Rootfiles",
   "/Volumes/MOTI/elastic_energy_analysis/rootfiles",
   0
 };
