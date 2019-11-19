@@ -176,8 +176,8 @@ TCut sh_adc_cut_Leffcer = "L.prl1.asum_c>-0.9*L.prl2.asum_c+300 && L.prl1.asum_c
 TCut sh_adc_cut_Leff="L.prl1.asum_c>-0.9*L.prl2.asum_c+1000 && L.prl1.asum_c<-0.9*L.prl2.asum_c+5000";
 TCut acc_cut_tightL = dp_cut_L_tight + th_cut_L_tight + ph_cut_L_tight;
 TCut acc_cut_looseL = dp_cut_L_loose + th_cut_L_loose + ph_cut_L_loose;
-TCut electron_cut_L = cer_cut_L+sh_cut_L+trigger_L;
-TCut electron_cut_Ltrack = cer_cut_L+trigger_L+sh_adc_cut_Leff;
+TCut electron_cut_L = cer_cut_L + sh_cut_L + trigger_L;
+TCut electron_cut_Ltrack = cer_cut_L + trigger_L + sh_adc_cut_Leff;
 
 
 //--------------RHRS-------------------------------------
@@ -194,7 +194,7 @@ const double tg_ph_R_loose=0.04;
 const double tg_th_R_loose=0.05;
 const double tg_dp_R_loose=0.05;
 //=========Tight cuts =====================//
-const double tg_ph_R_tight=0.035;
+const double tg_ph_R_tight=0.025;
 const double tg_th_R_tight=0.035;
 const double tg_dp_R_tight=0.035;
 

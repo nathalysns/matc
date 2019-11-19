@@ -73,9 +73,9 @@ void trigger(Int_t run){
         else if(run>93774 && run <93786){a1=1600; a2=700; c1=2700; c2=3200;} //R26-LS
         else if(run>93591 && run <93644){a1=1700; a2=700; c1=2900; c2=3400;} //R24-PK
         else if(run>93648 && run <93699){a1=1800; a2=700; c1=2700; c2=3300;} //R24-LS
-        else if(run>93092 && run <93124){a1=950; a2=150; c1=1320; c2=1550;} //R42-HS
-        else if(run>93044 && run <93092){a1=950; a2=0; c1=1200; c2=1550;} //R42-PK
-        else if(run>93125 && run <93149){a1=950; a2=0; c1=1200; c2=1550;} //R42-LS
+        else if(run>93092 && run <93124){a1=750; a2=300; c1=1300; c2=1550;} //R42-HS
+        else if(run>93044 && run <93092){a1=750; a2=300; c1=1300; c2=1550;} //R42-PK
+        else if(run>93125 && run <93149){a1=750; a2=300; c1=1300; c2=1550;} //R42-LS
 	    else {a1=3000; a2=0; c1=1000; c2=4000;}        
         shtest = Form(sht1,m,a1,m,a2,c1,c2);
 
@@ -87,16 +87,16 @@ void trigger(Int_t run){
     TH1F *h3 = new TH1F("h3","",500,0,2);
     TH1F *h4 = new TH1F("h4","",500,0,2);
 
-    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), datacurrentcut + total + shtest + beta, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h1",arm.Data()), datacurrentcut + total + shtest, "goff" );
     Double_t all = h1->GetEntries();
 
-    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), datacurrentcut + total + trig1 + trig2 + trig3 + shtest + beta, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h2",arm.Data()), datacurrentcut + total + trig1 + trig2 + trig3 + shtest, "goff" );
     Double_t alltrig = h2->GetEntries();
 
-    T->Draw(Form("EK%sx.x_bj>>h3",arm.Data()), datacurrentcut + total + trig1 + !trig2 + !trig3 + shtest + beta, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h3",arm.Data()), datacurrentcut + total + trig1 + !trig2 + !trig3 + shtest, "goff" );
     Double_t onlytrig1 = h3->GetEntries();
 
-    T->Draw(Form("EK%sx.x_bj>>h4",arm.Data()), datacurrentcut + total + !trig1 + !trig2 + trig3 + shtest + beta, "goff" );
+    T->Draw(Form("EK%sx.x_bj>>h4",arm.Data()), datacurrentcut + total + !trig1 + !trig2 + trig3 + shtest, "goff" );
     Double_t onlytrig3 = h4->GetEntries();
 
     ofstream outfile;
